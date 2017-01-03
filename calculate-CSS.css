@@ -1,0 +1,41 @@
+#operator{
+    width:230px;
+    height: 220px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -110px;
+    margin-left: -115px;
+}
+#resultScreen{
+    width: 216px;
+    height: 35px;
+}
+table {
+    float: left;
+    border-spacing:0;
+}
+td {
+    padding: 2;
+}
+.formc1sc {
+
+    width:40px;
+    height: 25px;
+    text-align: center;
+    font-size: 0.8em;
+    font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+    background-color: azure;
+
+    
+}
+.formc2sc {
+
+    width:40px;
+    height: 25px;
+    text-align: center;
+    font-size: 0.8em;
+    font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+    background-color: beige;
+
+}

@@ -1,14 +1,70 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Calculate</title>
-        <link href="calculate-CSS.css" rel="stylesheet">
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>Calculate</title>
+    <link href="calculate-CSS.css" rel="stylesheet">
+</head>
     
-    <body>
-        
-        
-        <script src="calculate-JS.js"></script>
-    </body>
+<body>
+    <div id="operator">
+        <table >
+            <tr>
+                <td colspan="5"><input id="resultScreen" type="text" name="result" onfocus="blur()"></td>
+            </tr>
+            <tr>
+                <td><input class="formc1sc" type="button" value="sin" name="sin" onclick="func('sin')"></td>
+                <td><input class="formc1sc" type="button" value="cos" name="cos" onclick="func('cos')"></td>
+                <td><input class="formc1sc" type="button" value="tan" name="tan" onclick="func('tan')"></td>
+                <td><input class="formc1sc" type="button" value="ln x" name="ln" onclick="func('ln')"></td>
+                <td><input class="formc1sc" type="button" value="log x" name="log" onclick="func('log')"></td>
+            </tr>
+            <tr>
+                <td><input class="formc1sc" type="button" value="asin" name="asin" onclick="func('asin')"></td>
+                <td><input class="formc1sc" type="button" value="acos" name="acos" onclick="func('acos')"></td>
+                <td><input class="formc1sc" type="button" value="atan" name="atan" onclick="func('atan')"></td>
+                <td><input class="formc1sc" type="button" value="e^x" name="euler" onclick="func('euler')"></td>
+                <td><input class="formc1sc" type="button" value="10^x" name="10tox" onclick="func('10tox')"></td>
+            </tr>
+            <tr>
+                <td><input class="formc1sc" type="button" value="&#40" name="leftParenthesis" onclick="func('leftParenthesis')"></td>
+                <td><input class="formc1sc" type="button" value="&#41" name="rightParenthesis" onclick="func('rightParenthesis')"></td>
+                <td><input class="formc1sc" type="button" value="x!" name="factorial" onclick="func('factorial')"></td>
+                <td><input class="formc1sc" type="button" value="x^y" name="series" onclick="func('series')"></td>
+                <td><input class="formc1sc" type="button" value="%" name="percentage" onclick="func('percentage')"></td>
+            </tr>
+            <tr>
+                <td><input class="formc2sc" type="button" value="7" name="digit7" onclick="digit(7)"></td>
+                <td><input class="formc2sc" type="button" value="8" name="digit8" onclick="digit(8)"></td>
+                <td><input class="formc2sc" type="button" value="9" name="digit9" onclick="digit(9)"></td>
+                <td><input class="formc2sc" type="button" value="DEL" name="delete" onclick="func('delete')"></td>
+                <td><input class="formc2sc" type="button" value="AC" name="clearAll" onclick="func('clearAll')"></td>
+            </tr>
+            <tr>
+                <td><input class="formc2sc" type="button" value="4" name="digit4" onclick="digit(4)"></td>
+                <td><input class="formc2sc" type="button" value="5" name="digit5" onclick="digit(5)"></td>
+                <td><input class="formc2sc" type="button" value="6" name="digit6" onclick="digit(6)"></td>
+                <td><input class="formc2sc" type="button" value="×" name="multiply" onclick="func('multiply')"></td>
+                <td><input class="formc2sc" type="button" value="÷" name="divide" onclick="func('divide')"></td>
+            </tr>
+            <tr>
+                <td><input class="formc2sc" type="button" value="1" name="digit1" onclick="digit(1)"></td>
+                <td><input class="formc2sc" type="button" value="2" name="digit2" onclick="digit(2)"></td>
+                <td><input class="formc2sc" type="button" value="3" name="digit3" onclick="digit(3)"></td>
+                <td><input class="formc2sc" type="button" value="＋" name="add" onclick="func('add')"></td>
+                <td><input class="formc2sc" type="button" value="-" name="subtract" onclick="func('subtract')"></td>
+            </tr>
+            <tr>
+                <td><input class="formc2sc" type="button" value="0" name="digit0" onclick="digit(0)"></td>
+                <td><input class="formc2sc" type="button" value="．" name="point" onclick="func('point')"></td>
+                <td><input class="formc2sc" type="button" value="π" name="pi" onclick="func('pi')"></td>
+                <td><input class="formc2sc" type="button" value="Ans" name="answer" onclick="func('answer')"></td>
+                <td><input class="formc2sc" type="button" value="＝" name="equal" onclick="func('equal')"></td>
+            </tr>
+        </table>
+    
+    </div>
+    
+    <script src="calculate-JS.js"></script>
+</body>
     
 </html>
