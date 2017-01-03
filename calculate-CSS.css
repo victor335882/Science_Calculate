@@ -1,14 +1,14 @@
 #operator{
-    width:230px;
-    height: 220px;
+    width:240px;
+    height: 242px;
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-top: -110px;
-    margin-left: -115px;
+    margin-top: -121px;
+    margin-left: -120px;
 }
 #resultScreen{
-    width: 216px;
+    width: 236px;
     height: 35px;
 }
 table {
@@ -19,8 +19,7 @@ td {
     padding: 2;
 }
 .formc1sc {
-
-    width:40px;
+    width:44px;
     height: 25px;
     text-align: center;
     font-size: 0.8em;
@@ -30,8 +29,7 @@ td {
     
 }
 .formc2sc {
-
-    width:40px;
+    width:44px;
     height: 25px;
     text-align: center;
     font-size: 0.8em;
