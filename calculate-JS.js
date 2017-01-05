@@ -1,12 +1,3 @@
-function digit(e) {
-    var displayDigit;
-    var onScreen = document.getElementById("resultScreen").innerHTML;
-    var addAfterClick = document.getElementsByName("digit"+e.value)[0].value;
-    displayDigit = onScreen + addAfterClick;  
-    document.getElementById("resultScreen").innerHTML = displayDigit;
-    
-}
-
 function clearAll() {
     var clear = "";
     document.getElementById("resultScreen").innerHTML = clear;
@@ -21,26 +12,47 @@ function back() {
     
 }
 
+function digit(e) {
+    var displayDigit;
+    var onScreen = document.getElementById("resultScreen").innerHTML;
+    var addAfterClick = document.getElementsByName("digit"+e.value)[0].value;  
+    if (onScreen.length > 18) {
+        displayDigit = onScreen;  
+        document.getElementById("resultScreen").innerHTML = displayDigit;
+        
+    } else{
+        displayDigit = onScreen + addAfterClick;  
+        document.getElementById("resultScreen").innerHTML = displayDigit;
+        
+    }
+       
+}
+
 function operator(e) {
     
     var displayDigit;
     var onScreen = document.getElementById("resultScreen").innerHTML;
-    var onScreenLength = onScreen.length
-    var judgeLastString = onScreen.substring(onScreenLength - 1, onScreenLength);
+    var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
     var addAfterClick = e.value;
-    
-    //statement of if must be "==", or browser can't compare 
-    if (onScreenLength == 0) {
-        // If there is no content on "onScreen",
+        
+    if (onScreen.length > 18) {
+        displayDigit = onScreen;  
+        document.getElementById("resultScreen").innerHTML = displayDigit;
+        
+    } else if (onScreen.length === 0) {
+        //statement of if must be "===", or browser can't compare 
+        // If there is no content on "onScreen"
         displayDigit = "0" + addAfterClick;
         document.getElementById("resultScreen").innerHTML = displayDigit;
-     
-    }  else if(isNaN(judgeLastString)) {
-        // If the last contents of "onScreen" is not Number,
-        displayDigit = onScreen;
-        document.getElementById("resultScreen").innerHTML = displayDigit;    
-    }else {
+        
+    } else if(isNaN(judgeLastString) === false) {
         displayDigit = onScreen + addAfterClick;
+        document.getElementById("resultScreen").innerHTML = displayDigit;  
+        
+    } else {
+        // If the last contents of "onScreen" is not Number,and length more then 18
+        displayDigit = onScreen;
         document.getElementById("resultScreen").innerHTML = displayDigit;
-    } 
+        
+    }
 }
