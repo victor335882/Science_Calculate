@@ -15,7 +15,7 @@ function clearAll() {
 
 function back() {
     var data = document.getElementById("resultScreen").innerHTML;
-    var dataLength = String(Number(String(data).length)-1);
+    var dataLength = Number(String(data).length)-1;
     var dataBack= data.substring(0,dataLength);
     document.getElementById("resultScreen").innerHTML = dataBack;
     
