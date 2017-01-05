@@ -15,12 +15,18 @@ function back() {
 function digit(e) {
     var displayDigit;
     var onScreen = document.getElementById("resultScreen").innerHTML;
+    var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length)
     var addAfterClick = document.getElementsByName("digit"+e.value)[0].value;  
+    
     if (onScreen.length > 18) {
         //Limit the maximum digit numbers
         displayDigit = onScreen;  
         document.getElementById("resultScreen").innerHTML = displayDigit;
         
+    } else if(judgeLastString === "π") {
+        displayDigit = onScreen + "×" + addAfterClick;
+        document.getElementById("resultScreen").innerHTML = displayDigit;  
+  
     } else{
         displayDigit = onScreen + addAfterClick;  
         document.getElementById("resultScreen").innerHTML = displayDigit;
@@ -50,10 +56,38 @@ function operator(e) {
     } else if(isNaN(judgeLastString) === false) {
         displayDigit = onScreen + addAfterClick;
         document.getElementById("resultScreen").innerHTML = displayDigit;  
-        
+     
+    } else if(judgeLastString === "π") {
+        displayDigit = onScreen + addAfterClick;
+        document.getElementById("resultScreen").innerHTML = displayDigit;  
+  
     } else {
         // If the last contents of "onScreen" is not Number,and length more then 18
         displayDigit = onScreen;
+        document.getElementById("resultScreen").innerHTML = displayDigit;
+        
+    }
+    
+}
+
+function pi(e) {
+    
+    var displayDigit;
+    var onScreen = document.getElementById("resultScreen").innerHTML;
+    var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
+    var addAfterClick = e.value;
+    console.log(e.value);
+    if (onScreen.length > 18) {
+        displayDigit = onScreen;  
+        document.getElementById("resultScreen").innerHTML = displayDigit;
+        
+    } else if(judgeLastString === "π") {
+        displayDigit = onScreen + "×" + addAfterClick;
+        document.getElementById("resultScreen").innerHTML = displayDigit;  
+        
+    } else {
+        // If the last contents of "onScreen" is not Number,and length more then 18
+        displayDigit = onScreen + addAfterClick;
         document.getElementById("resultScreen").innerHTML = displayDigit;
         
     }
