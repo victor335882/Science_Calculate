@@ -29,7 +29,7 @@ function operator(e) {
     var judgeLastString = onScreen.substring(onScreenLength - 1, onScreenLength);
     var addAfterClick = e.value;
     
-    //statement of if must be "=="
+    //statement of if must be "==", or browser can't compare 
     if (onScreenLength == 0) {
         // If there is no content on "onScreen",
         displayDigit = "0" + addAfterClick;
