@@ -17,6 +17,7 @@ function digit(e) {
     var onScreen = document.getElementById("resultScreen").innerHTML;
     var addAfterClick = document.getElementsByName("digit"+e.value)[0].value;  
     if (onScreen.length > 18) {
+        //Limit the maximum digit numbers
         displayDigit = onScreen;  
         document.getElementById("resultScreen").innerHTML = displayDigit;
         
@@ -36,6 +37,7 @@ function operator(e) {
     var addAfterClick = e.value;
         
     if (onScreen.length > 18) {
+        //Limit the maximum digit numbers
         displayDigit = onScreen;  
         document.getElementById("resultScreen").innerHTML = displayDigit;
         
