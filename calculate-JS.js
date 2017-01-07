@@ -17,7 +17,7 @@ function digit(e) {
     var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
     var addAfterClick = e.value;  
     if( judgeLastAns === 3) {
-        displayDigit = onScreen;
+        displayDigit = onScreen + "×" + addAfterClick;;
         document.getElementById("equqtion").innerHTML = displayDigit;  
     } else if(judgeLastString === "π") {
         displayDigit = onScreen + "×" + addAfterClick;
