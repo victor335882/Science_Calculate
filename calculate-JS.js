@@ -13,10 +13,13 @@ function back() {
 function digit(e) { 
     var displayDigit;
     var onScreen = document.getElementById("equqtion").innerHTML;
+    var judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
     var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
     var addAfterClick = e.value;  
-    
-    if(judgeLastString === "π") {
+    if( judgeLastAns === 3) {
+        displayDigit = onScreen;
+        document.getElementById("equqtion").innerHTML = displayDigit;  
+    } else if(judgeLastString === "π") {
         displayDigit = onScreen + "×" + addAfterClick;
         document.getElementById("equqtion").innerHTML = displayDigit;  
     } else{
@@ -29,6 +32,7 @@ function digit(e) {
 function operator(e) {
     var displayDigit;
     var onScreen = document.getElementById("equqtion").innerHTML;
+    var judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
     var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
     var addAfterClick = e.value;
     if (onScreen.length === 0) {
@@ -40,6 +44,9 @@ function operator(e) {
         displayDigit = onScreen + addAfterClick;
         document.getElementById("equqtion").innerHTML = displayDigit;  
     } else if(judgeLastString === "π") {
+        displayDigit = onScreen + addAfterClick;
+        document.getElementById("equqtion").innerHTML = displayDigit;  
+    } else if( judgeLastAns === 3) {
         displayDigit = onScreen + addAfterClick;
         document.getElementById("equqtion").innerHTML = displayDigit;  
     } else {
@@ -55,11 +62,11 @@ function pi(e) {
     var onScreen = document.getElementById("equqtion").innerHTML;
     var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
     var addAfterClick = e.value;
-    if(judgeLastString === "π") {
-        displayDigit = onScreen + "×" + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;  
-    } else if(judgeLastString === ".") {
+    if(judgeLastString === ".") {
         displayDigit = onScreen;
+        document.getElementById("equqtion").innerHTML = displayDigit;  
+    } else if(judgeLastString === "π") {
+        displayDigit = onScreen + "×" + addAfterClick;
         document.getElementById("equqtion").innerHTML = displayDigit;  
     } else {
         displayDigit = onScreen + addAfterClick;
@@ -92,4 +99,27 @@ function point(e) {
             document.getElementById("equqtion").innerHTML = displayDigit;
         }
     }
+}
+
+function answer(e) {
+    var displayDigit;
+    var onScreen = document.getElementById("equqtion").innerHTML;
+    var judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
+    var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
+    var addAfterClick = e.value;
+    console.log(judgeLastAns)
+    if(judgeLastString === ".") {
+        displayDigit = onScreen;
+        document.getElementById("equqtion").innerHTML = displayDigit;  
+    } else if(judgeLastString === "π") {
+        displayDigit = onScreen + "×" + addAfterClick;
+        document.getElementById("equqtion").innerHTML = displayDigit;  
+    } else if( judgeLastAns === 3) {
+        displayDigit = onScreen + "×" + addAfterClick;
+        document.getElementById("equqtion").innerHTML = displayDigit;  
+    } else {
+        displayDigit = onScreen + addAfterClick;
+        document.getElementById("equqtion").innerHTML = displayDigit;
+    }
+
 }
