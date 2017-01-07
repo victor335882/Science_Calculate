@@ -5,9 +5,17 @@ function clearAll() {
 
 function back() {
     var data = document.getElementById("equqtion").innerHTML;
-    var dataLength = Number(String(data).length)-1;
-    var dataBack= data.substring(0,dataLength);
-    document.getElementById("equqtion").innerHTML = dataBack;
+    var onScreen = document.getElementById("equqtion").innerHTML;
+    var judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
+    var dataLength = Number(String(data).length);
+    if ( judgeLastAns === 3) {
+        var dataBack= data.substring(0,dataLength - 3);
+        document.getElementById("equqtion").innerHTML = dataBack;  
+    } else {
+        var dataBack= data.substring(0,dataLength - 1);
+        document.getElementById("equqtion").innerHTML = dataBack;
+    }
+    
 }
 
 function digit(e) { 
@@ -107,7 +115,6 @@ function answer(e) {
     var judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
     var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
     var addAfterClick = e.value;
-    console.log(judgeLastAns)
     if(judgeLastString === ".") {
         displayDigit = onScreen;
         document.getElementById("equqtion").innerHTML = displayDigit;  
