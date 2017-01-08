@@ -14,8 +14,12 @@
             
             <tr>
                 <td id="resultScreen" colspan="5">
-                    <div id="anwser">Ans = <p id="result"></p></div>
+                    <div id="anwser" >
+                        <p id="background" hidden ></p>                       
+                        Ans = <span id="result">11</span>
+                    </div>
                     <div id="equqtion"></div>
+  
                 </td>
             </tr>
             <tr>
@@ -40,32 +44,32 @@
                 <td><input class="formc1sc" type="button" value="%" name="percentage" onclick="func('percentage')"></td>
             </tr>
             <tr>
-                <td><input class="formc2sc" type="button" value="7" name="digit7" onclick="digit(this)"></td>
-                <td><input class="formc2sc" type="button" value="8" name="digit8" onclick="digit(this)"></td>
-                <td><input class="formc2sc" type="button" value="9" name="digit9" onclick="digit(this)"></td>
+                <td><input class="formc2sc" type="button" value="7" name="7" onclick="digit(this)"></td>
+                <td><input class="formc2sc" type="button" value="8" name="8" onclick="digit(this)"></td>
+                <td><input class="formc2sc" type="button" value="9" name="9" onclick="digit(this)"></td>
                 <td><input class="formc2sc" type="button" value="DEL" name="back" onclick="back()"></td>
                 <td><input class="formc2sc" type="button" value="AC" name="clearAll" onclick="clearAll()"></td>
             </tr>
             <tr>
-                <td><input class="formc2sc" type="button" value="4" name="digit4" onclick="digit(this)"></td>
-                <td><input class="formc2sc" type="button" value="5" name="digit5" onclick="digit(this)"></td>
-                <td><input class="formc2sc" type="button" value="6" name="digit6" onclick="digit(this)"></td>
-                <td><input class="formc2sc" type="button" value="×" name="multiply" onclick="operator(this)"></td>
-                <td><input class="formc2sc" type="button" value="÷" name="divide" onclick="operator(this)"></td>
+                <td><input class="formc2sc" type="button" value="4" name="4" onclick="digit(this)"></td>
+                <td><input class="formc2sc" type="button" value="5" name="5" onclick="digit(this)"></td>
+                <td><input class="formc2sc" type="button" value="6" name="6" onclick="digit(this)"></td>
+                <td><input class="formc2sc" type="button" value="×" name="*" onclick="operator(this)"></td>
+                <td><input class="formc2sc" type="button" value="÷" name="/" onclick="operator(this)"></td>
             </tr>
             <tr>
-                <td><input class="formc2sc" type="button" value="1" name="digit1" onclick="digit(this)"></td>
-                <td><input class="formc2sc" type="button" value="2" name="digit2" onclick="digit(this)"></td>
-                <td><input class="formc2sc" type="button" value="3" name="digit3" onclick="digit(this)"></td>
-                <td><input class="formc2sc" type="button" value="+" name="add" onclick="operator(this)"></td>
-                <td><input class="formc2sc" type="button" value="-" name="subtract" onclick="operator(this)"></td>
+                <td><input class="formc2sc" type="button" value="1" name="1" onclick="digit(this)"></td>
+                <td><input class="formc2sc" type="button" value="2" name="2" onclick="digit(this)"></td>
+                <td><input class="formc2sc" type="button" value="3" name="3" onclick="digit(this)"></td>
+                <td><input class="formc2sc" type="button" value="+" name="+" onclick="operator(this)"></td>
+                <td><input class="formc2sc" type="button" value="-" name="-" onclick="operator(this)"></td>
             </tr>
             <tr>
-                <td><input class="formc2sc" type="button" value="0" name="digit0" onclick="digit(this)"></td>
-                <td><input class="formc2sc" type="button" value="." name="point" onclick="point(this)"></td>
-                <td><input class="formc2sc" type="button" value="π" name="pi" onclick="pi(this)"></td>
+                <td><input class="formc2sc" type="button" value="0" name="0" onclick="digit(this)"></td>
+                <td><input class="formc2sc" type="button" value="." name="." onclick="point(this)"></td>
+                <td><input class="formc2sc" type="button" value="π" name="Math.PI" onclick="pi(this)"></td>
                 <td><input class="formc2sc" type="button" value="Ans" name="answer" onclick="answer(this)"></td>
-                <td><input class="formc2sc" type="button" value="＝" name="equal" onclick="equal(this)"></td>
+                <td><input class="formc2sc" type="button" value="=" name="equal" onclick="equal()"></td>
             </tr>
         </table>
     
