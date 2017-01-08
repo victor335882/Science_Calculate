@@ -22,11 +22,17 @@ function digit(e) {
     var displayDigit;
     var onScreen = document.getElementById("equqtion").innerHTML;
     var judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
+    var searchAns = onScreen.search("Ans");
     var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
     var addAfterClick = e.value;  
     if( judgeLastAns === 3) {
-        displayDigit = onScreen + "×" + addAfterClick;;
-        document.getElementById("equqtion").innerHTML = displayDigit;  
+        if(searchAns === -1) {
+            displayDigit = onScreen + addAfterClick;  
+            document.getElementById("equqtion").innerHTML = displayDigit;
+        } else {
+            displayDigit = onScreen + "×" + addAfterClick;;
+            document.getElementById("equqtion").innerHTML = displayDigit; 
+        } 
     } else if(judgeLastString === "π") {
         displayDigit = onScreen + "×" + addAfterClick;
         document.getElementById("equqtion").innerHTML = displayDigit;  
@@ -34,7 +40,7 @@ function digit(e) {
         displayDigit = onScreen + addAfterClick;  
         document.getElementById("equqtion").innerHTML = displayDigit;
     }
-
+    console.log(searchAns);
 }
 
 function operator(e) {
@@ -128,5 +134,4 @@ function answer(e) {
         displayDigit = onScreen + addAfterClick;
         document.getElementById("equqtion").innerHTML = displayDigit;
     }
-
 }
