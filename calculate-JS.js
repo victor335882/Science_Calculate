@@ -10,8 +10,7 @@ var front = {
         
         π = Math.PI;
         Ans = Number(document.getElementById("result").innerHTML);
-        logBase10 = function(x) { return Math.LOG10E*Math.log(x); };
-        
+        Math.logBase10 = function(x) { return Math.LOG10E*Math.log(x); };
     },
 }
 
