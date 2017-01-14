@@ -1,189 +1,160 @@
+var onScreen = document.getElementById("equqtion").innerHTML;
+var judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
+var searchAns = onScreen.search("Ans");
+var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
+var judgeLastPoint = onScreen.substring(onScreen.lastIndexOf(".") + 1, onScreen.length);
+var dataLength = Number(String(onScreen).length);
+
+function frount() {  
+    onScreen = document.getElementById("equqtion").innerHTML;
+    judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
+    searchAns = onScreen.search("Ans");
+    judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
+    judgeLastPoint = onScreen.substring(onScreen.lastIndexOf(".") + 1, onScreen.length);
+    dataLength = Number(String(onScreen).length);
+}
+
 function clearAll() {
     var clear = "";
     document.getElementById("equqtion").innerHTML = clear;
 }
 
 function back() {
-    var data = document.getElementById("equqtion").innerHTML;
-    var onScreen = document.getElementById("equqtion").innerHTML;
-    var judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
-    var searchAns = onScreen.search("Ans");
-    var dataLength = Number(String(data).length);
+    frount();
     if ( judgeLastAns === 3) {
         if(searchAns === -1) {
-            var dataBack= data.substring(0,dataLength - 1);
-            document.getElementById("equqtion").innerHTML = dataBack;
+            document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 1);
         } else {
-            var dataBack= data.substring(0,dataLength - 3);
-            document.getElementById("equqtion").innerHTML = dataBack;
+            document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 3);
         }  
     } else {
-        var dataBack= data.substring(0,dataLength - 1);
-        document.getElementById("equqtion").innerHTML = dataBack;
+        document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 1);
     }
-    
+    console.log(onScreen);
+    return document.getElementById("equqtion").innerHTML;
 }
 
 function digit(e) { 
-    var displayDigit;
-    var onScreen = document.getElementById("equqtion").innerHTML;
-    var judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
-    var searchAns = onScreen.search("Ans");
-    var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
+    frount();
     var addAfterClick = e.value;
-
     if( judgeLastAns === 3) {
         if(searchAns === -1) {
-            displayDigit = onScreen + addAfterClick;  
-            document.getElementById("equqtion").innerHTML = displayDigit;
+            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;  
         } else {
-            displayDigit = onScreen + "×" + addAfterClick;;
-            document.getElementById("equqtion").innerHTML = displayDigit;
+            document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;;
         } 
     } else if(judgeLastString === "π") {
-        displayDigit = onScreen + "×" + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
     } else{
-        displayDigit = onScreen + addAfterClick;  
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;  
     }
 
+    return document.getElementById("equqtion").innerHTML;
 }
 
 function operator(e) {
-    var displayDigit;
-    var onScreen = document.getElementById("equqtion").innerHTML;
-    var judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
-    var searchAns = onScreen.search("Ans");
-    var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
+    frount();
     var addAfterClick = e.value;
     
     if (onScreen.length === 0) {
-        //statement of if must be "===", or browser can't compare 
-        // If there is no content on "onScreen"
-        displayDigit = "0" + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;       
+        document.getElementById("equqtion").innerHTML = "0" + addAfterClick;
     } else if(isNaN(judgeLastString) === false) {
-        displayDigit = onScreen + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
     } else if(judgeLastString === "π") {
-        displayDigit = onScreen + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;      
+        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
     } else if( judgeLastAns === 3) {
         if(searchAns != -1) {
-            displayDigit = onScreen + addAfterClick;  
-            document.getElementById("equqtion").innerHTML = displayDigit;
+            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
         } else {     
-            displayDigit = onScreen;
-            document.getElementById("equqtion").innerHTML = displayDigit;
+            document.getElementById("equqtion").innerHTML = onScreen;
         }
     } else {
-        // If the last contents of "onScreen" is not Number
-        displayDigit = onScreen;
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen;
     }
+    
+    return document.getElementById("equqtion").innerHTML;
 }
 
 function pi(e) {
-    var displayDigit;
-    var onScreen = document.getElementById("equqtion").innerHTML;
-    var judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
-    var searchAns = onScreen.search("Ans");
-    var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
+    frount();
     var addAfterClick = e.value;
-    
+
     if(judgeLastString === ".") {
-        displayDigit = onScreen;
-        document.getElementById("equqtion").innerHTML = displayDigit;        
+        document.getElementById("equqtion").innerHTML = onScreen;
     } else if(onScreen.length === 0) {
-        displayDigit = addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;        
+        document.getElementById("equqtion").innerHTML = addAfterClick;
     } else if(isNaN(judgeLastString) === false) {
-        displayDigit = onScreen + "×" + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
     } else if(judgeLastString === "π") {
-        displayDigit = onScreen + "×" + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;      
+        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
     } else if(judgeLastAns === 3) {
         if(searchAns != -1) {
-            displayDigit = onScreen + "×" + addAfterClick;  
-            document.getElementById("equqtion").innerHTML = displayDigit;
+            document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;  
         } else {     
-            displayDigit = onScreen + addAfterClick;
-            document.getElementById("equqtion").innerHTML = displayDigit;
+            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
         }
     } else if(judgeLastString === ")"){
-        displayDigit = onScreen + "×" + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
     } else {
-        displayDigit = onScreen + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
     } 
-
+    
+    return document.getElementById("equqtion").innerHTML;
 }
 
 function point(e) {
-    var displayDigit;
-    var onScreen = document.getElementById("equqtion").innerHTML;
-    var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
-    var judgeLastPoint = onScreen.substring(onScreen.lastIndexOf(".") + 1, onScreen.length);
+    frount();
     var addAfterClick = e.value;
-    
+
     if (onScreen.length === 0) {
-        displayDigit = onScreen;
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen;
     } else if(isNaN(judgeLastString)) {
-        displayDigit = onScreen;
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen;
     } else  {
         if ( onScreen.lastIndexOf(".") === -1) {
-            displayDigit = onScreen + addAfterClick;
-            document.getElementById("equqtion").innerHTML = displayDigit;
+            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
+        } else if(isNaN(judgeLastPoint)){
+            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
         } else {
-            displayDigit = onScreen;
-            document.getElementById("equqtion").innerHTML = displayDigit;
+            document.getElementById("equqtion").innerHTML = onScreen;
         }
     }
+    
+    return document.getElementById("equqtion").innerHTML;
 }
 
 function answer(e) {
-    var displayDigit;
-    var onScreen = document.getElementById("equqtion").innerHTML;
-    var judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
-    var searchAns = onScreen.search("Ans");
-    var judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
+    frount();
     var addAfterClick = e.value;
-    
+
     if(judgeLastString === ".") {
-        displayDigit = onScreen;
-        document.getElementById("equqtion").innerHTML = displayDigit;
-    } else if(onScreen.length === 0) {
-        displayDigit = onScreen + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen;
     } else if(isNaN(judgeLastString) === false) {
-        displayDigit = onScreen + "×" + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
     } else if(judgeLastString === "π") {
-        displayDigit = onScreen + "×" + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;      
+        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
     } else if(judgeLastAns === 3) {
         if(searchAns != -1) {
-            displayDigit = onScreen + "×" + addAfterClick;  
-            document.getElementById("equqtion").innerHTML = displayDigit;
+            document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;  
         } else {     
-            displayDigit = onScreen + addAfterClick;
-            document.getElementById("equqtion").innerHTML = displayDigit;
+            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
         }
     } else if(judgeLastString === ")"){
-        displayDigit = onScreen + "×" + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
     } else {
-        displayDigit = onScreen + addAfterClick;
-        document.getElementById("equqtion").innerHTML = displayDigit;
+        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
     }
+    
+    return document.getElementById("equqtion").innerHTML;
 }
 
-function equal(e) {
 
-    console.log("3+3");
+
+
+
+
+
+function equal(e) {
+    var onScreen = document.getElementById("equqtion").innerHTML;
+    console.log(eval(onScreen));
 }
