@@ -24,8 +24,6 @@ function back() {
     } else {
         document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 1);
     }
-    
-    return document.getElementById("equqtion").innerHTML;
 }
 
 function digit(e) { 
@@ -42,8 +40,6 @@ function digit(e) {
     } else{
         document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
     }
-    
-    return document.getElementById("equqtion").innerHTML;
 }
 
 function operator(e) {
@@ -65,8 +61,6 @@ function operator(e) {
     } else {
         document.getElementById("equqtion").innerHTML = onScreen;
     }
-    
-    return document.getElementById("equqtion").innerHTML;
 }
 
 function pi(e) {
@@ -92,8 +86,6 @@ function pi(e) {
     } else {
         document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
     } 
-    
-    return document.getElementById("equqtion").innerHTML;
 }
 
 function point(e) {
@@ -113,8 +105,6 @@ function point(e) {
             document.getElementById("equqtion").innerHTML = onScreen;
         }
     }
-    
-    return document.getElementById("equqtion").innerHTML;
 }
 
 function answer(e) {
@@ -138,8 +128,6 @@ function answer(e) {
     } else {
         document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
     }
-    
-    return document.getElementById("equqtion").innerHTML;
 }
 
 
