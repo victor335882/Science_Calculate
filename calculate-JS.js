@@ -13,14 +13,13 @@ var front = {
         logBase10 = function(x) { return Math.LOG10E*Math.log(x); };
         
     },
-   
-    
 }
 
 function clearAll() {
     document.getElementById("equqtion").innerHTML = "";
     document.getElementById("background").innerHTML = "";
     console.log(document.getElementById("background").innerHTML);
+    
 }
 
 function back() {
@@ -64,8 +63,6 @@ function digit(e) {
     console.log(document.getElementById("background").innerHTML);
 }
 
-
-
 function operator(e) {
     front.a();
     var addAfterClick = e.value;
@@ -82,6 +79,33 @@ function operator(e) {
         document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
         document.getElementById("background").innerHTML = onBackGround + addBackData;
     } 
+    
+    console.log(document.getElementById("background").innerHTML);
+}
+
+function point(e) {
+    front.a();
+    var addAfterClick = e.value;
+    var addBackData = e.name;
+
+    if (onScreen.length === 0) {
+        document.getElementById("equqtion").innerHTML = onScreen;
+        document.getElementById("background").innerHTML = onBackGround;
+    } else if(isNaN(judgeLastString)) {
+        document.getElementById("equqtion").innerHTML = onScreen;
+        document.getElementById("background").innerHTML = onBackGround;
+    } else  {
+        if (onScreen.lastIndexOf(".") === -1) {
+            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
+            document.getElementById("background").innerHTML = onBackGround + addBackData;
+        } else if(isNaN(judgeLastPoint)){
+            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
+            document.getElementById("background").innerHTML = onBackGround + addBackData;
+        } else {
+            document.getElementById("equqtion").innerHTML = onScreen;
+            document.getElementById("background").innerHTML = onBackGround;
+        }
+    }
     
     console.log(document.getElementById("background").innerHTML);
 }
@@ -141,33 +165,6 @@ function secFunc(e) {
         document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
         document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
     }
-    console.log(document.getElementById("background").innerHTML);
-}
-
-function point(e) {
-    front.a();
-    var addAfterClick = e.value;
-    var addBackData = e.name;
-
-    if (onScreen.length === 0) {
-        document.getElementById("equqtion").innerHTML = onScreen;
-        document.getElementById("background").innerHTML = onBackGround;
-    } else if(isNaN(judgeLastString)) {
-        document.getElementById("equqtion").innerHTML = onScreen;
-        document.getElementById("background").innerHTML = onBackGround;
-    } else  {
-        if (onScreen.lastIndexOf(".") === -1) {
-            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-            document.getElementById("background").innerHTML = onBackGround + addBackData;
-        } else if(isNaN(judgeLastPoint)){
-            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-            document.getElementById("background").innerHTML = onBackGround + addBackData;
-        } else {
-            document.getElementById("equqtion").innerHTML = onScreen;
-            document.getElementById("background").innerHTML = onBackGround;
-        }
-    }
-    
     console.log(document.getElementById("background").innerHTML);
 }
 
