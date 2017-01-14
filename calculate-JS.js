@@ -91,7 +91,7 @@ function operator(e) {
     console.log(document.getElementById("background").innerHTML);
 }
 
-function pi(e) {
+function basicFunc(e) {
     front.a();
     var addAfterClick = e.value;
     var addBackData = e.name;
@@ -102,28 +102,13 @@ function pi(e) {
     } else if(onScreen.length === 0) {
         document.getElementById("equqtion").innerHTML = addAfterClick;
         document.getElementById("background").innerHTML = addBackData;
-    } else if(isNaN(judgeLastString) === false) {
-        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
-    } else if(judgeLastString === "π") {
-        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
-    } else if(judgeLastAns === 3) {
-        if(searchAns != -1) {
-            document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
-            document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
-        } else {     
-            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-            document.getElementById("background").innerHTML = onBackGround + addBackData;
-        }
-    } else if(judgeLastString === ")"){
-        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
-    } else {
+    } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(") {
         document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
         document.getElementById("background").innerHTML = onBackGround + addBackData;
+    } else {
+        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
+        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
     }
-    
     console.log(document.getElementById("background").innerHTML);
 }
 
@@ -152,42 +137,6 @@ function point(e) {
     }
     
     console.log(document.getElementById("background").innerHTML);
-}
-
-function answer(e) {
-    front.a();
-    var addAfterClick = e.value;
-    var addBackData = e.name;
-
-    if(judgeLastString === ".") {
-        document.getElementById("equqtion").innerHTML = onScreen;
-        document.getElementById("background").innerHTML = onBackGround;
-    } else if(onScreen.length === 0) {
-        document.getElementById("equqtion").innerHTML = addAfterClick;
-        document.getElementById("background").innerHTML = addBackData;
-    } else if(isNaN(judgeLastString) === false) {
-        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
-    } else if(judgeLastString === "π") {
-        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
-    } else if(judgeLastAns === 3) {
-        if(searchAns != -1) {
-            document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
-            document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
-        } else {     
-            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-            document.getElementById("background").innerHTML = onBackGround + addBackData;
-        }
-    } else if(judgeLastString === ")"){
-        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
-    } else {
-        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + addBackData;
-    }
-    console.log(document.getElementById("background").innerHTML);
-
 }
 
 function equal(e) {
