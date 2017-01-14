@@ -10,8 +10,11 @@ var front = {
         
         π = Math.PI;
         Ans = Number(document.getElementById("result").innerHTML);
+        logBase10 = function(x) { return Math.LOG10E*Math.log(x); };
         
-    }
+    },
+   
+    
 }
 
 function clearAll() {
@@ -61,39 +64,68 @@ function digit(e) {
     console.log(document.getElementById("background").innerHTML);
 }
 
+
+
 function operator(e) {
     front.a();
     var addAfterClick = e.value;
     var addBackData = e.name;
     
-    if (onScreen.length === 0) {
-        document.getElementById("equqtion").innerHTML = "0" + addAfterClick;
-        document.getElementById("background").innerHTML = "0" + addBackData;
-    } else if(isNaN(judgeLastString) === false) {
-        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + addBackData;
-    } else if(judgeLastString === "π") {
-        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + addBackData;
-    } else if(judgeLastAns === 3) {
-        if(searchAns != -1) {
-            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-            document.getElementById("background").innerHTML = onBackGround + addBackData;
-        } else {     
-            document.getElementById("equqtion").innerHTML = onScreen;
-            document.getElementById("background").innerHTML = onBackGround;
-        }
-    } else {
+    if (onScreen.length === 0 || judgeLastString === ".") {
+        document.getElementById("equqtion").innerHTML = onScreen+ "0" + addAfterClick;
+        document.getElementById("background").innerHTML = onBackGround + "0" + addBackData;
+    } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(") {
         document.getElementById("equqtion").innerHTML = onScreen;
         document.getElementById("background").innerHTML = onBackGround;
-    }
+    
+    } else {
+        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
+        document.getElementById("background").innerHTML = onBackGround + addBackData;
+    } 
     
     console.log(document.getElementById("background").innerHTML);
+}
+
+function rightPare(e) {
+    front.a();
+    var addAfterClick = e.value;
+    var addBackData = e.value;
+    if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(") {
+        document.getElementById("equqtion").innerHTML = onScreen;
+        document.getElementById("background").innerHTML = onBackGround;
+    } else {
+        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
+        document.getElementById("background").innerHTML = onBackGround + addBackData;
+    }
+    console.log(document.getElementById("background").innerHTML);
+    
 }
 
 function basicFunc(e) {
     front.a();
     var addAfterClick = e.value;
+    var addBackData = e.name;
+
+    if(judgeLastString === ".") {
+        document.getElementById("equqtion").innerHTML = onScreen;
+        document.getElementById("background").innerHTML = onBackGround;
+    } else if(onScreen.length === 0) {
+        document.getElementById("equqtion").innerHTML = addAfterClick;
+        document.getElementById("background").innerHTML = addBackData;
+    } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(") {
+        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
+        document.getElementById("background").innerHTML = onBackGround + addBackData;
+    } else {
+        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
+        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
+    }
+    console.log(document.getElementById("background").innerHTML);
+}
+
+function secFunc(e) {
+    front.a();
+    
+    var addAfterClick = e.value + "(";
     var addBackData = e.name;
 
     if(judgeLastString === ".") {
