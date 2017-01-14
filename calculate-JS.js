@@ -194,14 +194,17 @@ function equal(e) {
     front.a();
     if(onScreen.length === 0) {
         document.getElementById("result").innerHTML = "0";
+        document.getElementById("equqtion").innerHTML = "";
         
     } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷") {
         back();
         front.a();
-        document.getElementById("result").innerHTML = eval(onBackGround)
+        document.getElementById("result").innerHTML = eval(onBackGround);
+        document.getElementById("equqtion").innerHTML = "";
         
     } else {
         document.getElementById("result").innerHTML = eval(onBackGround);
+        document.getElementById("equqtion").innerHTML = "";
     }
     console.log(document.getElementById("result").innerHTML);
 }
