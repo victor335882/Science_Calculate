@@ -13,8 +13,7 @@ var front = {
         countRightPare = (onScreen.match(/\)/g) || []).length;
         
         //Used in back function specially
-        onScreen.substring(onScreen.length - 2, onScreen.length - 1);
-        Number(String(onBackGround).length);
+        backDataLength = Number(String(onBackGround).length);
         
         
         π = Math.PI;
@@ -38,16 +37,11 @@ function back() {
         document.getElementById("background").innerHTML = onBackGround.substring(0,backDataLength - 3);
         
     } else if( judgeLastString === "(" ) {
-        if (secLastString != "+" || "-" || "×" || "÷" || "(" ) {
-            document.getElementById("equqtion").innerHTML = onScreen.substring(0, Math.max(onScreen.lastIndexOf("+"),onScreen.lastIndexOf("-"),onScreen.lastIndexOf("×"),onScreen.lastIndexOf("÷"),onScreen.substring(0, onScreen.length - 1).lastIndexOf("("))+1);
+        document.getElementById("equqtion").innerHTML = onScreen.substring(0, Math.max(onScreen.lastIndexOf("+"),onScreen.lastIndexOf("-"),onScreen.lastIndexOf("×"),onScreen.lastIndexOf("÷"),onScreen.substring(0, onScreen.length - 1).lastIndexOf("("))+1);
+
+        document.getElementById("background").innerHTML = onBackGround.substring(0, Math.max(onBackGround.lastIndexOf("+"),onBackGround.lastIndexOf("-"),onBackGround.lastIndexOf("*"),onBackGround.lastIndexOf("\/"),onBackGround.substring(0, onBackGround.length - 1).lastIndexOf("("))+1);
             
-            document.getElementById("background").innerHTML = onBackGround.substring(0, Math.max(onBackGround.lastIndexOf("+"),onBackGround.lastIndexOf("-"),onBackGround.lastIndexOf("*"),onBackGround.lastIndexOf("\/"),onBackGround.substring(0, onBackGround.length - 1).lastIndexOf("("))+1);
-            
-        } else {
-            document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 1);
-            document.getElementById("background").innerHTML = onBackGround.substring(0,backDataLength - 1);
         
-        }
     } else {
         document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 1);
         document.getElementById("background").innerHTML = onBackGround.substring(0,backDataLength - 1);
