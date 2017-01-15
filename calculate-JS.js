@@ -1,8 +1,11 @@
 var front = {
     a : function() { 
+        //used for get and return data
         frontData = "";
         backGroundData = "";
         result = "";
+        
+        // used to judge the conditions
         onScreen = document.getElementById("equqtion").innerHTML;
         onBackGround = document.getElementById("background").innerHTML;
         judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
