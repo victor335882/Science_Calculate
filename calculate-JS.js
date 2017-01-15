@@ -1,5 +1,8 @@
 var front = {
-    a : function() {  
+    a : function() { 
+        frontData = "";
+        backGroundData = "";
+        result = "";
         onScreen = document.getElementById("equqtion").innerHTML;
         onBackGround = document.getElementById("background").innerHTML;
         judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
@@ -33,19 +36,20 @@ function back() {
     front.a();
     
     if (judgeLastAns === 3 && searchAns != -1) {
-        document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 3);
-        document.getElementById("background").innerHTML = onBackGround.substring(0,backDataLength - 3);
+        frontData = onScreen.substring(0,dataLength - 3);
+        backGroundData = onBackGround.substring(0,backDataLength - 3);
         
     } else if( judgeLastString === "(" ) {
-        document.getElementById("equqtion").innerHTML = onScreen.substring(0, Math.max(onScreen.lastIndexOf("+"),onScreen.lastIndexOf("-"),onScreen.lastIndexOf("×"),onScreen.lastIndexOf("÷"),onScreen.substring(0, onScreen.length - 1).lastIndexOf("("))+1);
+        frontData = onScreen.substring(0, Math.max(onScreen.lastIndexOf("+"),onScreen.lastIndexOf("-"),onScreen.lastIndexOf("×"),onScreen.lastIndexOf("÷"),onScreen.substring(0, onScreen.length - 1).lastIndexOf("("))+1);
 
-        document.getElementById("background").innerHTML = onBackGround.substring(0, Math.max(onBackGround.lastIndexOf("+"),onBackGround.lastIndexOf("-"),onBackGround.lastIndexOf("*"),onBackGround.lastIndexOf("\/"),onBackGround.substring(0, onBackGround.length - 1).lastIndexOf("("))+1);
-            
+        backGroundData = onBackGround.substring(0, Math.max(onBackGround.lastIndexOf("+"),onBackGround.lastIndexOf("-"),onBackGround.lastIndexOf("*"),onBackGround.lastIndexOf("\/"),onBackGround.substring(0, onBackGround.length - 1).lastIndexOf("("))+1);
         
     } else {
-        document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 1);
-        document.getElementById("background").innerHTML = onBackGround.substring(0,backDataLength - 1);
+        frontData = onScreen.substring(0,dataLength - 1);
+        backGroundData = onBackGround.substring(0,backDataLength - 1);
     }
+    document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("background").innerHTML = backGroundData;
     
     console.log(document.getElementById("background").innerHTML);
 }
@@ -57,19 +61,21 @@ function digit(e) {
     
     if( judgeLastAns === 3) {
         if(searchAns === -1) {
-            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-            document.getElementById("background").innerHTML = onBackGround + addBackData;
+            frontData = onScreen + addAfterClick;
+            backGroundData = onBackGround + addBackData;
         } else {
-            document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
-            document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
+            frontData = onScreen + "×" + addAfterClick;
+            backGroundData = onBackGround + "*" + addBackData;
         } 
     } else if(judgeLastString === "π") {
-        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
+        frontData = onScreen + "×" + addAfterClick;
+        backGroundData = onBackGround + "*" + addBackData;
     } else{
-        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + addBackData;  
+        frontData = onScreen + addAfterClick;
+        backGroundData = onBackGround + addBackData;  
     }
+    document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("background").innerHTML = backGroundData;
     
     console.log(document.getElementById("background").innerHTML);
 }
@@ -80,16 +86,18 @@ function operator(e) {
     var addBackData = e.name;
     
     if (onScreen.length === 0 || judgeLastString === ".") {
-        document.getElementById("equqtion").innerHTML = onScreen+ "0" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "0" + addBackData;
+        frontData = onScreen+ "0" + addAfterClick;
+        backGroundData = onBackGround + "0" + addBackData;
     } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(") {
-        document.getElementById("equqtion").innerHTML = onScreen;
-        document.getElementById("background").innerHTML = onBackGround;
+        frontData = onScreen;
+        backGroundData = onBackGround;
     
     } else {
-        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + addBackData;
+        frontData = onScreen + addAfterClick;
+        backGroundData = onBackGround + addBackData;
     } 
+    document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("background").innerHTML = backGroundData;
     
     console.log(document.getElementById("background").innerHTML);
 }
@@ -100,23 +108,25 @@ function point(e) {
     var addBackData = e.name;
 
     if (onScreen.length === 0) {
-        document.getElementById("equqtion").innerHTML = onScreen;
-        document.getElementById("background").innerHTML = onBackGround;
+        frontData = onScreen;
+        backGroundData = onBackGround;
     } else if(isNaN(judgeLastString)) {
-        document.getElementById("equqtion").innerHTML = onScreen;
-        document.getElementById("background").innerHTML = onBackGround;
+        frontData = onScreen;
+        backGroundData = onBackGround;
     } else  {
         if (onScreen.lastIndexOf(".") === -1) {
-            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-            document.getElementById("background").innerHTML = onBackGround + addBackData;
+            frontData = onScreen + addAfterClick;
+            backGroundData = onBackGround + addBackData;
         } else if(isNaN(judgeLastPoint)){
-            document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-            document.getElementById("background").innerHTML = onBackGround + addBackData;
+            frontData = onScreen + addAfterClick;
+            backGroundData = onBackGround + addBackData;
         } else {
-            document.getElementById("equqtion").innerHTML = onScreen;
-            document.getElementById("background").innerHTML = onBackGround;
+            frontData = onScreen;
+            backGroundData = onBackGround;
         }
     }
+    document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("background").innerHTML = backGroundData;
     
     console.log(document.getElementById("background").innerHTML);
 }
@@ -126,18 +136,21 @@ function rightPare(e) {
     var addAfterClick = e.value;
     var addBackData = e.name;
     
-    if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || onScreen.length === 0 || countLeftPare <= countRightPare) {
-        document.getElementById("equqtion").innerHTML = onScreen;
-        document.getElementById("background").innerHTML = onBackGround;
+    if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(" || onScreen.length === 0 || countLeftPare <= countRightPare) {
+        frontData = onScreen;
+        backGroundData = onBackGround;
         
-    } else if (judgeLastString === "." || judgeLastString === "(") {
-        document.getElementById("equqtion").innerHTML = onScreen+ "0" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "0" + addBackData;
+    } else if (judgeLastString === "." ) {
+        frontData = onScreen+ "0" + addAfterClick;
+        backGroundData = onBackGround + "0" + addBackData;
         
     } else {
-        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + addBackData;
+        frontData = onScreen + addAfterClick;
+        backGroundData = onBackGround + addBackData;
     }
+    document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("background").innerHTML = backGroundData;
+    
     console.log(document.getElementById("background").innerHTML);
 
 }
@@ -148,21 +161,24 @@ function leftPare(e) {
     var addBackData = e.name;
     
     if( onScreen.length === 0 ) {
-        document.getElementById("equqtion").innerHTML = onScreen;
-        document.getElementById("background").innerHTML = onBackGround;
+        frontData = onScreen;
+        backGroundData = onBackGround;
         
     } else if (isNaN(judgeLastString) === false || judgeLastString === ")") {
-        document.getElementById("equqtion").innerHTML = onScreen+ "×" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
+        frontData = onScreen+ "×" + addAfterClick;
+        backGroundData = onBackGround + "*" + addBackData;
         
     } else if (judgeLastString === ".") {
-        document.getElementById("equqtion").innerHTML = onScreen+ "0×" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "0*" + addBackData;
+        frontData = onScreen+ "0×" + addAfterClick;
+        backGroundData = onBackGround + "0*" + addBackData;
         
     } else {
-        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + addBackData;
+        frontData = onScreen + addAfterClick;
+        backGroundData = onBackGround + addBackData;
     }
+    document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("background").innerHTML = backGroundData;
+    
     console.log(document.getElementById("background").innerHTML);
     
     
@@ -174,58 +190,65 @@ function basicFunc(e) {
     var addBackData = e.name;
 
     if(judgeLastString === ".") {
-        document.getElementById("equqtion").innerHTML = onScreen;
-        document.getElementById("background").innerHTML = onBackGround;
+        frontData = onScreen+ "0×" + addAfterClick;
+        backGroundData = onBackGround + "0*" + addBackData;
     } else if(onScreen.length === 0) {
-        document.getElementById("equqtion").innerHTML = addAfterClick;
-        document.getElementById("background").innerHTML = addBackData;
+        frontData = addAfterClick;
+        backGroundData = addBackData;
     } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(") {
-        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + addBackData;
+        frontData = onScreen + addAfterClick;
+        backGroundData = onBackGround + addBackData;
     } else {
-        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
+        frontData = onScreen + "×" + addAfterClick;
+        backGroundData = onBackGround + "*" + addBackData;
     }
+    document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("background").innerHTML = backGroundData;
+    
     console.log(document.getElementById("background").innerHTML);
 }
 
 function secFunc(e) {
     front.a();
-    
     var addAfterClick = e.value + "(";
     var addBackData = e.name;
 
     if(judgeLastString === ".") {
-        document.getElementById("equqtion").innerHTML = onScreen;
-        document.getElementById("background").innerHTML = onBackGround;
+        frontData = onScreen+ "0×" + addAfterClick;
+        backGroundData = onBackGround + "0*" + addBackData;
     } else if(onScreen.length === 0) {
-        document.getElementById("equqtion").innerHTML = addAfterClick;
-        document.getElementById("background").innerHTML = addBackData;
+        frontData = addAfterClick;
+        backGroundData = addBackData;
     } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(") {
-        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + addBackData;
+        frontData = onScreen + addAfterClick;
+        backGroundData = onBackGround + addBackData;
     } else {
-        document.getElementById("equqtion").innerHTML = onScreen + "×" + addAfterClick;
-        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
+        frontData = onScreen + "×" + addAfterClick;
+        backGroundData = onBackGround + "*" + addBackData;
     }
+    document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("background").innerHTML = backGroundData;
+    
     console.log(document.getElementById("background").innerHTML);
 }
 
 function equal(e) {
     front.a();
     if(onScreen.length === 0) {
-        document.getElementById("result").innerHTML = "0";
+        result = "0";
         clearAll();
         
     } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷") {
         back();
         front.a();
-        document.getElementById("result").innerHTML = eval(onBackGround);
+        result = eval(onBackGround);
         clearAll();
         
     } else {
-        document.getElementById("result").innerHTML = eval(onBackGround);
+        result = eval(onBackGround);
         clearAll();
     }
+    document.getElementById("result").innerHTML = result;
+    
     console.log(document.getElementById("result").innerHTML);
 }
