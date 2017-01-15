@@ -8,6 +8,9 @@ var front = {
         judgeLastPoint = onScreen.substring(onScreen.lastIndexOf(".") + 1, onScreen.length);
         dataLength = Number(String(onScreen).length);
         
+        countLeftPare = (onScreen.match(/\(/g) || []).length;
+        countRightPare = (onScreen.match(/\)/g) || []).length;
+        
         π = Math.PI;
         Ans = Number(document.getElementById("result").innerHTML);
         Math.logBase10 = function(x) { return Math.LOG10E*Math.log(x); };
@@ -118,11 +121,8 @@ function rightPare(e) {
     front.a();
     var addAfterClick = e.value;
     var addBackData = e.name;
-    var searchLeftPare = (onScreen.match(/\(/g) || []).length;
-    var searchRightPare = (onScreen.match(/\)/g) || []).length;
     
-    
-    if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || onScreen.length === 0 || searchLeftPare <= searchRightPare) {
+    if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || onScreen.length === 0 || countLeftPare <= countRightPare) {
         document.getElementById("equqtion").innerHTML = onScreen;
         document.getElementById("background").innerHTML = onBackGround;
         
