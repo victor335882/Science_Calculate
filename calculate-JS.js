@@ -31,11 +31,16 @@ function back() {
             document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 3);
             document.getElementById("background").innerHTML = onScreen.substring(0,dataLength - 3);
         }  
+    } else if( judgeLastString === "(" ) {
+        
+        
     } else {
         document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 1);
         document.getElementById("background").innerHTML = onScreen.substring(0,dataLength - 1);
     }
-    console.log(document.getElementById("background").innerHTML);
+    console.log(judgeLastAns);
+    console.log(onScreen.length);
+    console.log(onScreen.lastIndexOf("Ans"));
 }
 
 function digit(e) { 
@@ -112,15 +117,50 @@ function point(e) {
 function rightPare(e) {
     front.a();
     var addAfterClick = e.value;
-    var addBackData = e.value;
-    if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(") {
+    var addBackData = e.name;
+    var searchLeftPare = (onScreen.match(/\(/g) || []).length;
+    var searchRightPare = (onScreen.match(/\)/g) || []).length;
+    
+    
+    if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || onScreen.length === 0 || searchLeftPare <= searchRightPare) {
         document.getElementById("equqtion").innerHTML = onScreen;
         document.getElementById("background").innerHTML = onBackGround;
+        
+    } else if (judgeLastString === "." || judgeLastString === "(") {
+        document.getElementById("equqtion").innerHTML = onScreen+ "0" + addAfterClick;
+        document.getElementById("background").innerHTML = onBackGround + "0" + addBackData;
+        
     } else {
         document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
         document.getElementById("background").innerHTML = onBackGround + addBackData;
     }
     console.log(document.getElementById("background").innerHTML);
+
+}
+
+function leftPare(e) {
+    front.a();
+    var addAfterClick = e.value;
+    var addBackData = e.name;
+    
+    if( onScreen.length === 0 ) {
+        document.getElementById("equqtion").innerHTML = onScreen;
+        document.getElementById("background").innerHTML = onBackGround;
+        
+    } else if (isNaN(judgeLastString) === false || judgeLastString === ")") {
+        document.getElementById("equqtion").innerHTML = onScreen+ "×" + addAfterClick;
+        document.getElementById("background").innerHTML = onBackGround + "*" + addBackData;
+        
+    } else if (judgeLastString === ".") {
+        document.getElementById("equqtion").innerHTML = onScreen+ "0×" + addAfterClick;
+        document.getElementById("background").innerHTML = onBackGround + "0*" + addBackData;
+        
+    } else {
+        document.getElementById("equqtion").innerHTML = onScreen + addAfterClick;
+        document.getElementById("background").innerHTML = onBackGround + addBackData;
+    }
+    console.log(document.getElementById("background").innerHTML);
+    
     
 }
 
