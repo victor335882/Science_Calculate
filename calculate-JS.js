@@ -12,6 +12,11 @@ var front = {
         countLeftPare = (onScreen.match(/\(/g) || []).length;
         countRightPare = (onScreen.match(/\)/g) || []).length;
         
+        //Used in back function specially
+        onScreen.substring(onScreen.length - 2, onScreen.length - 1);
+        Number(String(onBackGround).length);
+        
+        
         π = Math.PI;
         Ans = Number(document.getElementById("result").innerHTML);
         Math.logBase10 = function(x) { return Math.LOG10E*Math.log(x); };
@@ -27,8 +32,6 @@ function clearAll() {
 
 function back() {
     front.a();
-    var secLastString = onScreen.substring(onScreen.length - 2, onScreen.length - 1);
-    var backDataLength = Number(String(onBackGround).length);
     
     if (judgeLastAns === 3 && searchAns != -1) {
         document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 3);
@@ -43,15 +46,14 @@ function back() {
         } else {
             document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 1);
             document.getElementById("background").innerHTML = onBackGround.substring(0,backDataLength - 1);
-            
-        }
         
+        }
     } else {
         document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 1);
         document.getElementById("background").innerHTML = onBackGround.substring(0,backDataLength - 1);
     }
-    console.log(document.getElementById("background").innerHTML);
     
+    console.log(document.getElementById("background").innerHTML);
 }
 
 function digit(e) { 
