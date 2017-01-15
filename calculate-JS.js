@@ -8,6 +8,7 @@ var front = {
         judgeLastPoint = onScreen.substring(onScreen.lastIndexOf(".") + 1, onScreen.length);
         dataLength = Number(String(onScreen).length);
         
+        //Used in rightPare function specially
         countLeftPare = (onScreen.match(/\(/g) || []).length;
         countRightPare = (onScreen.match(/\)/g) || []).length;
         
@@ -26,24 +27,28 @@ function clearAll() {
 
 function back() {
     front.a();
-    if (judgeLastAns === 3) {
-        if(searchAns === -1) {
+    var secLastString = onScreen.substring(onScreen.length - 2, onScreen.length - 1);
+    
+    if (judgeLastAns === 3 && searchAns != -1) {
+        document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 3);
+        document.getElementById("background").innerHTML = onScreen.substring(0,dataLength - 3);
+        
+    } else if( judgeLastString === "(" ) {
+        if (secLastString != "+" || secLastString != "-" || secLastString != "×" || secLastString != "÷" || secLastString != "(") {
+            document.getElementById("equqtion").innerHTML = onScreen.substring(0, Math.max(onScreen.lastIndexOf("+"),onScreen.lastIndexOf("-"),onScreen.lastIndexOf("×"),onScreen.lastIndexOf("÷"),onScreen.substring(0, onScreen.length - 1).lastIndexOf("("))+1);
+            
+        } else {
             document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 1);
             document.getElementById("background").innerHTML = onScreen.substring(0,dataLength - 1);
-        } else {
-            document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 3);
-            document.getElementById("background").innerHTML = onScreen.substring(0,dataLength - 3);
-        }  
-    } else if( judgeLastString === "(" ) {
-        
+            
+        }
         
     } else {
         document.getElementById("equqtion").innerHTML = onScreen.substring(0,dataLength - 1);
         document.getElementById("background").innerHTML = onScreen.substring(0,dataLength - 1);
     }
-    console.log(judgeLastAns);
-    console.log(onScreen.length);
-    console.log(onScreen.lastIndexOf("Ans"));
+    console.log(document.getElementById("background").innerHTML);
+    
 }
 
 function digit(e) { 
