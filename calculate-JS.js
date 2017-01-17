@@ -78,7 +78,7 @@ function digit(e) {
     document.getElementById("equqtion").innerHTML = frontData;
     document.getElementById("background").innerHTML = backGroundData;
     
-    console.log(frontData);
+    console.log(backGroundData);
 }
 
 function operator(e) {

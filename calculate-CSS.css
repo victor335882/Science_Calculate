@@ -29,8 +29,7 @@
 #equqtion{
     padding: 0;
     height: 24px;
-    overflow: hidden;
-    direction: rtl;
+    text-align: right;
     font-size: 1.4em;
     font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
 
