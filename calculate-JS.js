@@ -14,6 +14,20 @@ var front = {
         judgeLastPoint = onScreen.substring(onScreen.lastIndexOf(".") + 1, onScreen.length);
         dataLength = Number(String(onScreen).length);
         
+        // used to back functions
+        maxScLfuncIndex = Math.max(onScreen.lastIndexOf("+"), onScreen.lastIndexOf("-"), onScreen.lastIndexOf("×"), onScreen.lastIndexOf("÷"), onScreen.substring(0, onScreen.length - 1).lastIndexOf("("));
+        remainScFunction = onScreen.substring(0, maxScLfuncIndex+1);
+        
+        maxBgLfuncIndex = Math.max(onBackGround.lastIndexOf("+"), onBackGround.lastIndexOf("-"), onBackGround.lastIndexOf("*"), onBackGround.lastIndexOf("\/"), onBackGround.substring(0, onBackGround.length - 1).lastIndexOf("("));
+        remainBgFunction = onBackGround.substring(0, maxBgLfuncIndex+1);
+        
+        // used to factorial functions
+        maxScLOperIndex = Math.max(onScreen.lastIndexOf("+"), onScreen.lastIndexOf("-"), onScreen.lastIndexOf("×"), onScreen.lastIndexOf("÷"));
+        lastScoperator = onScreen.substring(maxScLOperIndex, onScreen.length);
+        
+        maxBgLOperIndex = Math.max(onBackGround.lastIndexOf("+"), onBackGround.lastIndexOf("-"), onBackGround.lastIndexOf("*"), onBackGround.lastIndexOf("\/"));
+        lastBgoperator = onBackGround.substring(maxBgLOperIndex, onBackGround.length);
+        
         //Used in rightPare function specially
         countLeftPare = (onScreen.match(/\(/g) || []).length;
         countRightPare = (onScreen.match(/\)/g) || []).length;
@@ -43,9 +57,8 @@ function back() {
         backGroundData = onBackGround.substring(0,backDataLength - 3);
         
     } else if( judgeLastString === "(" ) {
-        frontData = onScreen.substring(0, Math.max(onScreen.lastIndexOf("+"),onScreen.lastIndexOf("-"),onScreen.lastIndexOf("×"),onScreen.lastIndexOf("÷"),onScreen.substring(0, onScreen.length - 1).lastIndexOf("("))+1);
-
-        backGroundData = onBackGround.substring(0, Math.max(onBackGround.lastIndexOf("+"),onBackGround.lastIndexOf("-"),onBackGround.lastIndexOf("*"),onBackGround.lastIndexOf("\/"),onBackGround.substring(0, onBackGround.length - 1).lastIndexOf("("))+1);
+        frontData = remainScFunction;
+        backGroundData = remainBgFunction;
         
     } else {
         frontData = onScreen.substring(0,dataLength - 1);
@@ -55,6 +68,7 @@ function back() {
     document.getElementById("background").innerHTML = backGroundData;
     
     console.log(document.getElementById("background").innerHTML);
+
 }
 
 function digit(e) { 
@@ -65,7 +79,7 @@ function digit(e) {
     if(judgeLastAns === 3 && searchAns != -1) {
         frontData = onScreen + " ×" + addAfterClick;
         backGroundData = onBackGround + "*" + addBackData;
-    } else if(judgeLastString === "π") {
+    } else if(judgeLastString === "π" || judgeLastString === ")") {
         frontData = onScreen + " ×" + addAfterClick;
         backGroundData = onBackGround + "*" + addBackData;
     } else if(isNaN(judgeLastString) === false || judgeLastString === ".") {
@@ -280,6 +294,41 @@ function powerExp(e) {
     document.getElementById("background").innerHTML = backGroundData;
     
     console.log(document.getElementById("background").innerHTML);
+    
+}
+
+function factorial(e) {
+    front.a();
+    var addAfterClick = e.value;
+    var addBackData = e.name;
+
+    if(isNaN(judgeLastString) === false) {
+        frontData = onScreen;
+        backGroundData = onBackGround;
+    } else if(maxScLOperIndex === -1) {
+        if(onScreen != parseInt(onScreen,10)) {
+            frontData = onScreen;
+            backGroundData = onBackGround;
+        } else {
+            frontData = onScreen + addAfterClick;
+            backGroundData = onBackGround + addBackData;
+        }
+    } else {
+        if(lastScoperator != parseInt(lastScoperator,10)) {
+            frontData = onScreen;
+            backGroundData = onBackGround;
+        } else {
+            frontData = onScreen + addAfterClick;
+            backGroundData = onBackGround + addBackData;
+        }
+        
+    }
+    document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("background").innerHTML = backGroundData;
+    
+    console.log(document.getElementById("background").innerHTML);
+    console.log(Boolean(maxScLOperIndex === -1));
+    console.log(Boolean(onScreen != parseInt(onScreen,10)));
     
 }
 
