@@ -15,6 +15,7 @@ var front = {
         dataLength = Number(String(onScreen).length);
         
         // used to back functions
+        //Due to there are a space after operator so we neeed to plus 1 after maxScLfuncIndex and maxBgLfuncIndex
         maxScLfuncIndex = Math.max(onScreen.lastIndexOf("+"), onScreen.lastIndexOf("-"), onScreen.lastIndexOf("×"), onScreen.lastIndexOf("÷"), onScreen.substring(0, onScreen.length - 1).lastIndexOf("("));
         remainScFunction = onScreen.substring(0, maxScLfuncIndex+1);
         
@@ -22,11 +23,21 @@ var front = {
         remainBgFunction = onBackGround.substring(0, maxBgLfuncIndex+1);
         
         // used to factorial functions
-        maxScLOperIndex = Math.max(onScreen.lastIndexOf("+"), onScreen.lastIndexOf("-"), onScreen.lastIndexOf("×"), onScreen.lastIndexOf("÷"));
-        lastScoperator = onScreen.substring(maxScLOperIndex, onScreen.length);
+        maxScLOperIndex = Math.max(onScreen.lastIndexOf("+"), onScreen.lastIndexOf("-"), onScreen.lastIndexOf("×"), onScreen.lastIndexOf("÷"), onScreen.lastIndexOf("("));
+        //Due we already knowes the last string is numbers or not by (isNaN(judgeLastString)) condition in factorial functions, so add.replace(/!+/g, '') to reuse scAfLastOperatorTran in back function.
+        scAfLastOperator = onScreen.substring(maxScLOperIndex+1, onScreen.length).replace(/!+/g, '');
+        scAfLastOperatorTran = scAfLastOperator.replace(/\s+/g, '');
+
+        maxBgLOperIndex = Math.max(onBackGround.lastIndexOf("+"), onBackGround.lastIndexOf("-"), onBackGround.lastIndexOf("*"), onBackGround.lastIndexOf("\/"), onBackGround.lastIndexOf("("));
+        bgBfLastOperator = onBackGround.substring(0, maxBgLOperIndex+1);
+
+        Fact = function(x) {
+            var relevant=1;
+            for (var i = 2; i <= x; i++)
+            relevant = relevant * i;
+            return relevant;
+        };
         
-        maxBgLOperIndex = Math.max(onBackGround.lastIndexOf("+"), onBackGround.lastIndexOf("-"), onBackGround.lastIndexOf("*"), onBackGround.lastIndexOf("\/"));
-        lastBgoperator = onBackGround.substring(maxBgLOperIndex, onBackGround.length);
         
         //Used in rightPare function specially
         countLeftPare = (onScreen.match(/\(/g) || []).length;
@@ -53,15 +64,19 @@ function back() {
     front.a();
     
     if (judgeLastAns === 3 && searchAns != -1) {
-        frontData = onScreen.substring(0,dataLength - 3);
+        frontData = onScreen.substring(0,dataLength - 4);
         backGroundData = onBackGround.substring(0,backDataLength - 3);
         
     } else if( judgeLastString === "(" ) {
         frontData = remainScFunction;
         backGroundData = remainBgFunction;
         
+    } else if( judgeLastString === "!" ) {
+        frontData = onScreen.substring(0,dataLength - 2);
+        backGroundData = bgBfLastOperator + scAfLastOperatorTran;
+        
     } else {
-        frontData = onScreen.substring(0,dataLength - 1);
+        frontData = onScreen.substring(0,dataLength - 2);
         backGroundData = onBackGround.substring(0,backDataLength - 1);
     }
     document.getElementById("equqtion").innerHTML = frontData;
@@ -79,20 +94,17 @@ function digit(e) {
     if(judgeLastAns === 3 && searchAns != -1) {
         frontData = onScreen + " ×" + addAfterClick;
         backGroundData = onBackGround + "*" + addBackData;
-    } else if(judgeLastString === "π" || judgeLastString === ")") {
+    } else if(judgeLastString === "π" || judgeLastString === ")" || judgeLastString === "!") {
         frontData = onScreen + " ×" + addAfterClick;
         backGroundData = onBackGround + "*" + addBackData;
-    } else if(isNaN(judgeLastString) === false || judgeLastString === ".") {
-        frontData = onScreen + addAfterClick.substring(1,2);
-        backGroundData = onBackGround + addBackData;  
-    }else {
+    } else {
         frontData = onScreen + addAfterClick;
         backGroundData = onBackGround + addBackData;  
     }
     document.getElementById("equqtion").innerHTML = frontData;
     document.getElementById("background").innerHTML = backGroundData;
     
-    console.log(backGroundData);
+    console.log(document.getElementById("background").innerHTML);
 }
 
 function operator(e) {
@@ -179,7 +191,7 @@ function leftPare(e) {
         frontData = onScreen + addAfterClick;
         backGroundData = onBackGround + addBackData;
         
-    } else if (isNaN(judgeLastString) === false || judgeLastString === ")") {
+    } else if (isNaN(judgeLastString) === false || judgeLastString === ")" || judgeLastString === "!") {
         frontData = onScreen+ " ×" + addAfterClick;
         backGroundData = onBackGround + "*" + addBackData;
         
@@ -301,35 +313,35 @@ function factorial(e) {
     front.a();
     var addAfterClick = e.value;
     var addBackData = e.name;
-
-    if(isNaN(judgeLastString) === false) {
+    
+    
+    
+    if(isNaN(judgeLastString)) {
+        // not number
         frontData = onScreen;
         backGroundData = onBackGround;
-    } else if(maxScLOperIndex === -1) {
-        if(onScreen != parseInt(onScreen,10)) {
-            frontData = onScreen;
-            backGroundData = onBackGround;
-        } else {
-            frontData = onScreen + addAfterClick;
-            backGroundData = onBackGround + addBackData;
-        }
+    } else if(maxScLOperIndex === -1 && scAfLastOperatorTran != parseInt(scAfLastOperatorTran,10)) {
+        // not integer
+        frontData = onScreen;
+        backGroundData = onBackGround;
+    } else if(maxScLOperIndex != -1 && scAfLastOperatorTran != parseInt(scAfLastOperatorTran,10)) {
+        // not integer
+        frontData = onScreen;
+        backGroundData = onBackGround;
     } else {
-        if(lastScoperator != parseInt(lastScoperator,10)) {
-            frontData = onScreen;
-            backGroundData = onBackGround;
-        } else {
-            frontData = onScreen + addAfterClick;
-            backGroundData = onBackGround + addBackData;
-        }
         
+        frontData = onScreen + addAfterClick.substring(2,4);
+        backGroundData = bgBfLastOperator + Fact(scAfLastOperatorTran);
     }
+        
+    
     document.getElementById("equqtion").innerHTML = frontData;
     document.getElementById("background").innerHTML = backGroundData;
     
     console.log(document.getElementById("background").innerHTML);
-    console.log(Boolean(maxScLOperIndex === -1));
-    console.log(Boolean(onScreen != parseInt(onScreen,10)));
+
     
+
 }
 
 function equal(e) {
