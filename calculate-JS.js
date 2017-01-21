@@ -46,7 +46,7 @@ var front = {
         
         //used to pow function
         
-        var bgJudgeForPower = function() {
+        bgJudgeForPower = function() {
             var i = 0;
             do {
                 i += 1;
@@ -388,7 +388,7 @@ function power(e) {
             
         } else {
             frontData = onScreen + addAfterClick;
-            backGroundData = onBackGround.substring(0,bgJudgeForPower()) + addBackData + onBackGround.substring(bgJudgeForPower(),onBackGround.length);
+            backGroundData = onBackGround.substring(0,bgJudgeForPower()) + addBackData + onBackGround.substring(bgJudgeForPower(),onBackGround.length) + ",";
         }
         
     } 
