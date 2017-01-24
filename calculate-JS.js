@@ -20,7 +20,7 @@ var front = {
         maxScLfuncIndex = Math.max(onScreen.lastIndexOf("+"), onScreen.lastIndexOf("-"), onScreen.lastIndexOf("×"), onScreen.lastIndexOf("÷"), onScreen.substring(0, onScreen.length - 1).lastIndexOf("("));
         remainScFunction = onScreen.substring(0, maxScLfuncIndex+1);
         
-        maxBgLfuncIndex = Math.max(onBackGround.lastIndexOf("+"), onBackGround.lastIndexOf("-"), onBackGround.lastIndexOf("*"), onBackGround.lastIndexOf("\/"), onBackGround.substring(0, onBackGround.length - 1).lastIndexOf("("));
+        maxBgLfuncIndex = Math.max(onBackGround.lastIndexOf("+"), onBackGround.lastIndexOf("-"), onBackGround.lastIndexOf("*"), onBackGround.lastIndexOf("\/"), onBackGround.substring(0, onBackGround.lastIndexOf("(") - 1).lastIndexOf("("));
         remainBgFunction = onBackGround.substring(0, maxBgLfuncIndex+1);
         
         
@@ -44,9 +44,9 @@ var front = {
         };
         
         
-        //used to pow function
+        //used to pow and factorial functions
         
-        bgJudgeForPower = function() {
+        bgJudgeBetLeftAndRight = function() {
             var i = 0;
             do {
                 i += 1;
@@ -58,6 +58,27 @@ var front = {
             return onBackGround.length - i;
 
         }
+        
+        //used to back pow and factorial functions
+        scJudgeBetLeftAndRight = function(offset) {
+            var i = 0;
+            do {
+                i += 1;
+                var deleteSpecChar = onScreen.length - offset;
+                var bbb = onScreen.substring(deleteSpecChar - i, deleteSpecChar);
+                var scCountLeftPare = (bbb.match(/\(/g) || []).length;
+                var scCountRightPare = (bbb.match(/\)/g) || []).length;
+                console.log(i);
+            } while (scCountLeftPare < scCountRightPare);
+            
+            scBetLeftAndRight = onScreen.substring(deleteSpecChar - i,deleteSpecChar)
+            scNoSpaceBetLeftAndRight = scBetLeftAndRight.replace(/\s+/g, '');
+            
+            return scNoSpaceBetLeftAndRight;
+        }
+        
+        scBetLeftAndRight = onScreen.substring(scJudgeBetLeftAndRight(),onScreen.length - 4)
+        scNoSpaceBetLeftAndRight = scBetLeftAndRight.replace(/\s+/g, '');
         
         //Used in rightPare function specially
         countLeftPare = (onScreen.match(/\(/g) || []).length;
@@ -88,13 +109,24 @@ function back() {
         backGroundData = onBackGround.substring(0,backDataLength - 3);
         
     } else if( judgeLastString === "(") {
-        frontData = remainScFunction;
-        backGroundData = remainBgFunction;
         
+        if(onScreen.substring(onScreen.length - 3, onScreen.length - 2) === "^") {
+            frontData = onScreen.substring(0,dataLength - 4);
+            backGroundData = remainBgFunction + scJudgeBetLeftAndRight(4);
+            
+        } else {
+            frontData = remainScFunction;
+            backGroundData = remainBgFunction;
+        }
     } else if( judgeLastString === "!") {
-        frontData = onScreen.substring(0,dataLength - 2);
-        backGroundData = bgBfLastOperator + scAfLastOperatorTran;
-        
+        if(onScreen.substring(onScreen.length - 3, onScreen.length - 2) === ")") {
+            frontData = onScreen.substring(0,dataLength - 2);
+            backGroundData = bgBfLastOperator + scJudgeBetLeftAndRight(2);
+            
+        } else {
+            frontData = onScreen.substring(0,dataLength - 2);
+            backGroundData = bgBfLastOperator + scAfLastOperatorTran;
+        }
     } else {
         frontData = onScreen.substring(0,dataLength - 2);
         backGroundData = onBackGround.substring(0,backDataLength - 1);
@@ -104,6 +136,7 @@ function back() {
     
     console.log(document.getElementById("background").innerHTML);
 
+ 
 
 }
 
@@ -278,6 +311,7 @@ function secFunc(e) {
     document.getElementById("background").innerHTML = backGroundData;
     
     console.log(document.getElementById("background").innerHTML);
+    
 }
 
 function powerExp(e) {
@@ -309,18 +343,18 @@ function factorial(e) {
     front.a();
     var addAfterClick = e.value;
     
-    if(isNaN(judgeLastString)) {
+    if(isNaN(judgeLastString) && judgeLastString != ")") {
         // not number
         frontData = onScreen;
         backGroundData = onBackGround;
-    } else if(maxScLOperIndex === -1 && scAfLastOperatorTran != parseInt(scAfLastOperatorTran,10)) {
+    } else if(scAfLastOperatorTran != parseInt(scAfLastOperatorTran,10) && judgeLastString != ")") {
         // not integer
         frontData = onScreen;
         backGroundData = onBackGround;
-    } else if(maxScLOperIndex != -1 && scAfLastOperatorTran != parseInt(scAfLastOperatorTran,10)) {
-        // not integer
-        frontData = onScreen;
-        backGroundData = onBackGround;
+    } else if(judgeLastString === ")") {
+        frontData = onScreen + addAfterClick.substring(2,4);
+        backGroundData = onBackGround.substring(0,bgJudgeBetLeftAndRight()) + Fact(eval(onBackGround.substring(bgJudgeBetLeftAndRight(),onBackGround.length)));
+        
     } else {
         
         frontData = onScreen + addAfterClick.substring(2,4);
@@ -331,6 +365,7 @@ function factorial(e) {
     document.getElementById("background").innerHTML = backGroundData;
     
     console.log(document.getElementById("background").innerHTML);
+
 }
 
 function power10(e) {
@@ -388,7 +423,7 @@ function power(e) {
             
         } else {
             frontData = onScreen + addAfterClick;
-            backGroundData = onBackGround.substring(0,bgJudgeForPower()) + addBackData + onBackGround.substring(bgJudgeForPower(),onBackGround.length) + ",";
+            backGroundData = onBackGround.substring(0,bgJudgeBetLeftAndRight()) + addBackData + onBackGround.substring(bgJudgeBetLeftAndRight(),onBackGround.length) + ",";
         }
         
     } 
