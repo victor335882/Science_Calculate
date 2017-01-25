@@ -43,8 +43,10 @@ var front = {
             return relevant;
         };
         
+       
         
-        //used to pow and factorial functions
+        
+        //used to pow functions
         
         bgJudgeBetLeftAndRight = function() {
             var i = 0;
@@ -53,32 +55,56 @@ var front = {
                 var aaa = onBackGround.substring(onBackGround.length - i, onBackGround.length);
                 var bgCountLeftPare = (aaa.match(/\(/g) || []).length;
                 var bgCountRightPare = (aaa.match(/\)/g) || []).length;
-                console.log(i);
+ 
             } while (bgCountLeftPare < bgCountRightPare);
             return onBackGround.length - i;
 
         }
         
-        //used to back pow and factorial functions
-        scJudgeBetLeftAndRight = function(offset) {
+        //used to back pow functions
+        bgJudgeBetLeftAndRight2 = function() {
             var i = 0;
             do {
                 i += 1;
-                var deleteSpecChar = onScreen.length - offset;
-                var bbb = onScreen.substring(deleteSpecChar - i, deleteSpecChar);
-                var scCountLeftPare = (bbb.match(/\(/g) || []).length;
-                var scCountRightPare = (bbb.match(/\)/g) || []).length;
-                console.log(i);
-            } while (scCountLeftPare < scCountRightPare);
+                var bgDeleteSpecChar = onBackGround.length - 1;
+                var bbb = onBackGround.substring(bgDeleteSpecChar - i, bgDeleteSpecChar);
+                var bgCountLeftPare2 = (bbb.match(/\(/g) || []).length;
+                var bgCountRightPare2 = (bbb.match(/\)/g) || []).length;
+
+            } while (bgCountLeftPare2 < bgCountRightPare2);
             
-            scBetLeftAndRight = onScreen.substring(deleteSpecChar - i,deleteSpecChar)
-            scNoSpaceBetLeftAndRight = scBetLeftAndRight.replace(/\s+/g, '');
-            
-            return scNoSpaceBetLeftAndRight;
+            return bgDeleteSpecChar - i;
         }
         
-        scBetLeftAndRight = onScreen.substring(scJudgeBetLeftAndRight(),onScreen.length - 4)
-        scNoSpaceBetLeftAndRight = scBetLeftAndRight.replace(/\s+/g, '');
+        bgBetLeftAndRight2 = onBackGround.substring(bgJudgeBetLeftAndRight2(),onBackGround.length - 1)
+        
+        maxBgLfuncIndex2 = Math.max(onBackGround.substring(0,bgJudgeBetLeftAndRight2())
+.lastIndexOf("+"), onBackGround.substring(0,bgJudgeBetLeftAndRight2()).lastIndexOf("-"), onBackGround.substring(0,bgJudgeBetLeftAndRight2()).lastIndexOf("*"), onBackGround.substring(0,bgJudgeBetLeftAndRight2()).lastIndexOf("\/"), onBackGround.substring(0,bgJudgeBetLeftAndRight2()).substring(0, onBackGround.lastIndexOf("(") - 1).lastIndexOf("("));
+        remainBgFunction2 = onBackGround.substring(0, maxBgLfuncIndex2+1);
+        
+        //used to factorial functions
+        
+        scJudgeBetLeftAndRight = function() {
+            var i = 0;
+            do {
+                i += 1;
+                var scDeleteSpecChar = onScreen.length - 2;
+                var ccc = onScreen.substring(scDeleteSpecChar - i, scDeleteSpecChar);
+                var scCountLeftPare = (ccc.match(/\(/g) || []).length;
+                var scCountRightPare = (ccc.match(/\)/g) || []).length;
+ 
+            } while (scCountLeftPare < scCountRightPare);
+            return scDeleteSpecChar - i;
+
+        }
+        scBetLeftAndRight = onScreen.substring(scJudgeBetLeftAndRight(),onScreen.length - 2)
+        scBetLeftAndRightTran1 = scBetLeftAndRight.replace(/\s+/g, '');
+        scBetLeftAndRightTran2 = scBetLeftAndRightTran1.replace(/×/g, '*');
+        scBetLeftAndRightTran3 = scBetLeftAndRightTran2.replace(/÷/g, '/');
+        
+        bgBetLeft = onBackGround.substring(0,bgJudgeBetLeftAndRight());
+        
+        
         
         //Used in rightPare function specially
         countLeftPare = (onScreen.match(/\(/g) || []).length;
@@ -111,22 +137,22 @@ function back() {
     } else if( judgeLastString === "(") {
         
         if(onScreen.substring(onScreen.length - 3, onScreen.length - 2) === "^") {
-            frontData = onScreen.substring(0,dataLength - 4);
-            backGroundData = remainBgFunction + scJudgeBetLeftAndRight(4);
+            if(onScreen.substring(onScreen.length - 5, onScreen.length - 4) === ")") {
+                frontData = onScreen.substring(0,dataLength - 4);
+                backGroundData = remainBgFunction2 + bgBetLeftAndRight2;
+            } else {
+                frontData = onScreen.substring(0,dataLength - 4);
+                backGroundData = remainBgFunction + onBackGround.substring(onBackGround.lastIndexOf("(")+1,onBackGround.length-1);
+            }
             
         } else {
             frontData = remainScFunction;
             backGroundData = remainBgFunction;
         }
     } else if( judgeLastString === "!") {
-        if(onScreen.substring(onScreen.length - 3, onScreen.length - 2) === ")") {
-            frontData = onScreen.substring(0,dataLength - 2);
-            backGroundData = bgBfLastOperator + scJudgeBetLeftAndRight(2);
-            
-        } else {
-            frontData = onScreen.substring(0,dataLength - 2);
-            backGroundData = bgBfLastOperator + scAfLastOperatorTran;
-        }
+        frontData = onScreen.substring(0,dataLength - 2);
+        backGroundData = bgBetLeft + scBetLeftAndRightTran3;
+        
     } else {
         frontData = onScreen.substring(0,dataLength - 2);
         backGroundData = onBackGround.substring(0,backDataLength - 1);
@@ -135,6 +161,10 @@ function back() {
     document.getElementById("background").innerHTML = backGroundData;
     
     console.log(document.getElementById("background").innerHTML);
+    console.log(scJudgeBetLeftAndRight());
+    console.log(onScreen.length);
+    
+   
 
  
 
@@ -352,13 +382,16 @@ function factorial(e) {
         frontData = onScreen;
         backGroundData = onBackGround;
     } else if(judgeLastString === ")") {
-        frontData = onScreen + addAfterClick.substring(2,4);
-        backGroundData = onBackGround.substring(0,bgJudgeBetLeftAndRight()) + Fact(eval(onBackGround.substring(bgJudgeBetLeftAndRight(),onBackGround.length)));
-        
+        if(eval(onBackGround.substring(bgJudgeBetLeftAndRight(),onBackGround.length)) != parseInt(eval(onBackGround.substring(bgJudgeBetLeftAndRight(),onBackGround.length)),10)) {
+            frontData = onScreen;
+            backGroundData = onBackGround;
+        } else {
+            frontData = onScreen + addAfterClick.substring(2,4);
+            backGroundData = onBackGround.substring(0,bgJudgeBetLeftAndRight()) + "(" +  Fact(eval(onBackGround.substring(bgJudgeBetLeftAndRight(),onBackGround.length))) +")";
+        }
     } else {
-        
         frontData = onScreen + addAfterClick.substring(2,4);
-        backGroundData = bgBfLastOperator + Fact(scAfLastOperatorTran);
+        backGroundData = bgBfLastOperator + "(" + Fact(scAfLastOperatorTran) +")";
     }
     
     document.getElementById("equqtion").innerHTML = frontData;
@@ -370,7 +403,7 @@ function factorial(e) {
 
 function power10(e) {
     front.a();
-    var addAfterClick = e.value.substring(0,5) + " (";
+    var addAfterClick = e.value.substring(0,6) + " (";
     var addBackData = e.name;
     if(onScreen.length === 0) {
         frontData = addAfterClick;
@@ -416,15 +449,9 @@ function power(e) {
         frontData = onScreen + " 0" + addAfterClick;
         backGroundData = bgBfLastOperator + addBackData + bgAfLastOperator + "0,";
     } else {
-        // Judge the special "(" to be the remaining bg data after press x^y or 10^y button
-        if(countLeftPare === countRightPare) {
-            frontData = onScreen + addAfterClick;
-            backGroundData = addBackData + onBackGround + ",";
-            
-        } else {
-            frontData = onScreen + addAfterClick;
-            backGroundData = onBackGround.substring(0,bgJudgeBetLeftAndRight()) + addBackData + onBackGround.substring(bgJudgeBetLeftAndRight(),onBackGround.length) + ",";
-        }
+        
+        frontData = onScreen + addAfterClick;
+        backGroundData = onBackGround.substring(0,bgJudgeBetLeftAndRight()) + addBackData + onBackGround.substring(bgJudgeBetLeftAndRight(),onBackGround.length) + ",";
         
     } 
     
