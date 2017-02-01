@@ -26,13 +26,20 @@
 
 }
 
-#equqtion{
-    padding: 0;
-    height: 24px;
+#showedData{
+    padding-top: 4;
+    height: 18px;
     text-align: right;
-    font-size: 1.4em;
+    font-size: 1em;
     font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
 
+} 
+
+#equqtion{
+    margin: 0;  
+}
+#equqtion2{
+    margin: 0;  
 }
 
 table {
@@ -49,7 +56,7 @@ td {
     height: 25px;
     padding-left: 2px;
     text-align: center;
-    font-size: 1em;
+    font-size: 0.8em;
     font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
     background-color: azure;
 
