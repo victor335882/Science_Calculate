@@ -381,9 +381,12 @@ function back() {
             if(onScreen.substring(onScreen.length - 5, onScreen.length - 4) === ")") {
                 frontData = onScreen.substring(0,dataLength - 4);
                 backGroundData = remainBgFunction2 + bgBetLeftAndRight2;
+            } else if(onScreen.substring(onScreen.length - 5, onScreen.length - 4) === "e") {
+                frontData = onScreen.substring(0,dataLength - 6);
+                backGroundData = remainBgFunction;
             } else {
                 frontData = onScreen.substring(0,dataLength - 4);
-                backGroundData = remainBgFunction + onBackGround.substring(onBackGround.lastIndexOf("(")+1,onBackGround.length-1);
+                backGroundData = remainBgFunction + onBackGround.substring(onBackGround.lastIndexOf("(")+1,onBackGround.length - 1);
             }
             
         } else {
