@@ -63,10 +63,7 @@ var category = {
     },
     
     //used to judge basicFunc, secFunc, powerExp and power10 functions
-    simillarFunc : function(e) {
-        var addAfterClick = e.value;
-        var addBackData = e.name;
-        
+    simillarFunc : function(addAfterClick,addBackData) {
         if(onScreen.length === 0) {
             frontData = addAfterClick;
             backGroundData = addBackData;
@@ -153,14 +150,19 @@ function clearAll() {
 
 function basicFunc(e) {
     category.basicVariable();
-    category.simillarFunc(e);   
-     
+    var addAfterClick = e.value;
+    var addBackData = e.name;
+    category.simillarFunc(addAfterClick,addBackData);   
+    
+    
     console.log(document.getElementById("background").innerHTML);
 }
 
 function secFunc(e) {
     category.basicVariable();
-    category.simillarFunc(e);
+    var addAfterClick = e.value + " (";
+    var addBackData = e.name;
+    category.simillarFunc(addAfterClick,addBackData);
 
     console.log(document.getElementById("background").innerHTML);
     
@@ -168,7 +170,9 @@ function secFunc(e) {
 
 function powerExp(e) {
     category.basicVariable();
-    category.simillarFunc(e);
+    var addAfterClick = e.value.substring(0,4) + " (";
+    var addBackData = e.name;
+    category.simillarFunc(addAfterClick,addBackData);
     
     console.log(document.getElementById("background").innerHTML);
     
@@ -176,7 +180,9 @@ function powerExp(e) {
 
 function power10(e) {
     category.basicVariable();
-    category.simillarFunc(e);
+    var addAfterClick = e.value.substring(0,6) + " (";
+    var addBackData = e.name;
+    category.simillarFunc(addAfterClick,addBackData);
 
     console.log(document.getElementById("background").innerHTML);
     
