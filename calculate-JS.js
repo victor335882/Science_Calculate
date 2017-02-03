@@ -7,7 +7,8 @@ var category = {
         onScreen = document.getElementById("equqtion").innerHTML;
         onBackGround = document.getElementById("background").innerHTML;
         judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
-        
+        judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
+        searchAns = onScreen.search("Ans");
         
     },
     point : function() {
@@ -81,64 +82,61 @@ var category = {
         document.getElementById("background").innerHTML = backGroundData;
     },
     
-    back : function() {
-        dataLength = Number(String(onScreen).length);
-        backDataLength = Number(String(onBackGround).length);
+    back : {
+        length : function() {
+            dataLength = Number(String(onScreen).length);
+            backDataLength = Number(String(onBackGround).length);
+        },
         
-        //back Ans
-        judgeLastAns = onScreen.length - onScreen.lastIndexOf("Ans");
-        searchAns = onScreen.search("Ans");
-        
-        
-        // back.normal
-        //Due to there are a space after operator so we neeed to plus 1 after maxScLfuncIndex and maxBgLfuncIndex
-        maxScLfuncIndex = Math.max(onScreen.lastIndexOf("+"), onScreen.lastIndexOf("-"), onScreen.lastIndexOf("×"), onScreen.lastIndexOf("÷"), onScreen.substring(0, onScreen.length - 1).lastIndexOf("("));
-        remainScFunction = onScreen.substring(0, maxScLfuncIndex+1);
-        
-        maxBgLfuncIndex = Math.max(onBackGround.lastIndexOf("+"), onBackGround.lastIndexOf("-"), onBackGround.lastIndexOf("*"), onBackGround.lastIndexOf("\/"), onBackGround.substring(0, onBackGround.lastIndexOf("(") - 1).lastIndexOf("("));
-        remainBgFunction = onBackGround.substring(0, maxBgLfuncIndex+1);
-        
-        
-        //back.power
-        bgJudgeBetLeftAndRight2 = function() {
-            var i = 0;
-            do {
-                i += 1;
-                var bgDeleteSpecChar = onBackGround.length - 1;
-                var bbb = onBackGround.substring(bgDeleteSpecChar - i, bgDeleteSpecChar);
-                var bgCountLeftPare2 = (bbb.match(/\(/g) || []).length;
-                var bgCountRightPare2 = (bbb.match(/\)/g) || []).length;
+        backSecFunc : function() {
+            //Due to there are a space after operator so we neeed to plus 1 after maxScLfuncIndex and maxBgLfuncIndex
+            maxScLfuncIndex = Math.max(onScreen.lastIndexOf("+"), onScreen.lastIndexOf("-"), onScreen.lastIndexOf("×"), onScreen.lastIndexOf("÷"), onScreen.substring(0, onScreen.length - 1).lastIndexOf("("));
+            remainScFunction = onScreen.substring(0, maxScLfuncIndex+1);
 
-            } while (bgCountLeftPare2 < bgCountRightPare2);
-            
-            return bgDeleteSpecChar - i;
-        };
-
-        maxBgLfuncIndex2 = Math.max(onBackGround.substring(0,bgJudgeBetLeftAndRight2()).lastIndexOf("+"), onBackGround.substring(0,bgJudgeBetLeftAndRight2()).lastIndexOf("-"), onBackGround.substring(0,bgJudgeBetLeftAndRight2()).lastIndexOf("*"), onBackGround.substring(0,bgJudgeBetLeftAndRight2()).lastIndexOf("\/"), onBackGround.substring(0,bgJudgeBetLeftAndRight2()).substring(0, onBackGround.lastIndexOf("(") - 1).lastIndexOf("("));
-        remainBgFunction2 = onBackGround.substring(0, maxBgLfuncIndex2+1);
+            maxBgLfuncIndex = Math.max(onBackGround.lastIndexOf("+"), onBackGround.lastIndexOf("-"), onBackGround.lastIndexOf("*"), onBackGround.lastIndexOf("\/"), onBackGround.substring(0, onBackGround.lastIndexOf("(") - 1).lastIndexOf("("));
+            remainBgFunction = onBackGround.substring(0, maxBgLfuncIndex+1);
+        },
         
-        bgBetLeftAndRight2 = onBackGround.substring(bgJudgeBetLeftAndRight2(),onBackGround.length - 1);
-        //back.factorial
-        
-        scJudgeBetLeftAndRight = function() {
-            var i = 0;
-            do {
-                i += 1;
-                var scDeleteSpecChar = onScreen.length - 2;
-                var ccc = onScreen.substring(scDeleteSpecChar - i, scDeleteSpecChar);
-                var scCountLeftPare = (ccc.match(/\(/g) || []).length;
-                var scCountRightPare = (ccc.match(/\)/g) || []).length;
- 
-            } while (scCountLeftPare < scCountRightPare);
-            return scDeleteSpecChar - i;
+        backPower : function() {
+            bgJudgeBetLeftAndRight2 = function() {
+                var i = 0;
+                do {
+                    i += 1;
+                    var bgDeleteSpecChar = onBackGround.length - 1;
+                    var bbb = onBackGround.substring(bgDeleteSpecChar - i, bgDeleteSpecChar);
+                    var bgCountLeftPare2 = (bbb.match(/\(/g) || []).length;
+                    var bgCountRightPare2 = (bbb.match(/\)/g) || []).length;
 
+                } while (bgCountLeftPare2 < bgCountRightPare2);
+
+                return bgDeleteSpecChar - i;
+            };
+
+            maxBgLfuncIndex2 = Math.max(onBackGround.substring(0,bgJudgeBetLeftAndRight2()).lastIndexOf("+"), onBackGround.substring(0,bgJudgeBetLeftAndRight2()).lastIndexOf("-"), onBackGround.substring(0,bgJudgeBetLeftAndRight2()).lastIndexOf("*"), onBackGround.substring(0,bgJudgeBetLeftAndRight2()).lastIndexOf("\/"), onBackGround.substring(0,bgJudgeBetLeftAndRight2()).substring(0, onBackGround.lastIndexOf("(") - 1).lastIndexOf("("));
+            remainBgFunction2 = onBackGround.substring(0, maxBgLfuncIndex2+1);
+
+            bgBetLeftAndRight2 = onBackGround.substring(bgJudgeBetLeftAndRight2(),onBackGround.length - 1);
+        },
+        
+        backFactorial : function() {
+            scJudgeBetLeftAndRight = function() {
+                var i = 0;
+                do {
+                    i += 1;
+                    var scDeleteSpecChar = onScreen.length - 2;
+                    var ccc = onScreen.substring(scDeleteSpecChar - i, scDeleteSpecChar);
+                    var scCountLeftPare = (ccc.match(/\(/g) || []).length;
+                    var scCountRightPare = (ccc.match(/\)/g) || []).length;
+
+                } while (scCountLeftPare < scCountRightPare);
+                return scDeleteSpecChar - i;
+
+            }
+            scBetLeftAndRight = onScreen.substring(scJudgeBetLeftAndRight(),onScreen.length - 2)
+            scBetLeftAndRightTran1 = scBetLeftAndRight.replace(/\s+/g, '');
+            scBetLeftAndRightTran2 = scBetLeftAndRightTran1.replace(/×/g, '*');
+            scBetLeftAndRightTran3 = scBetLeftAndRightTran2.replace(/÷/g, '/');  
         }
-        scBetLeftAndRight = onScreen.substring(scJudgeBetLeftAndRight(),onScreen.length - 2)
-        scBetLeftAndRightTran1 = scBetLeftAndRight.replace(/\s+/g, '');
-        scBetLeftAndRightTran2 = scBetLeftAndRightTran1.replace(/×/g, '*');
-        scBetLeftAndRightTran3 = scBetLeftAndRightTran2.replace(/÷/g, '/');
-        
-        
     },
 }
 
@@ -394,30 +392,36 @@ function factorial(e) {
 function back() {
     category.basicVariable();
     category.powerAndFactorial();
-    category.back();
+    category.back.length();
+    
     if (judgeLastAns === 3 && searchAns != -1) {
         frontData = onScreen.substring(0,dataLength - 4);
         backGroundData = onBackGround.substring(0,backDataLength - 3);
         
     } else if( judgeLastString === "(") {
-        
         if(onScreen.substring(onScreen.length - 3, onScreen.length - 2) === "^") {
             if(onScreen.substring(onScreen.length - 5, onScreen.length - 4) === ")") {
+                category.back.backPower();
                 frontData = onScreen.substring(0,dataLength - 4);
                 backGroundData = remainBgFunction2 + bgBetLeftAndRight2;
             } else if(onScreen.substring(onScreen.length - 5, onScreen.length - 4) === "e") {
+                category.back.backSecFunc();
                 frontData = onScreen.substring(0,dataLength - 6);
                 backGroundData = remainBgFunction;
             } else {
+                category.back.backSecFunc();
                 frontData = onScreen.substring(0,dataLength - 4);
                 backGroundData = remainBgFunction + onBackGround.substring(onBackGround.lastIndexOf("(")+1,onBackGround.length - 1);
             }
             
         } else {
+            category.back.backSecFunc();
             frontData = remainScFunction;
             backGroundData = remainBgFunction;
         }
+        
     } else if( judgeLastString === "!") {
+        category.back.backFactorial();
         frontData = onScreen.substring(0,dataLength - 2);
         backGroundData = bgBefLeftparen + scBetLeftAndRightTran3;
         
