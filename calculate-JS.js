@@ -188,6 +188,30 @@ function power10(e) {
     
 }
 
+function percentage(e) {
+    category.basicVariable();
+    var addAfterClick = e.value;
+    var addBackData = e.name;
+    if(onScreen.length === 0) {
+            frontData = addAfterClick;
+            backGroundData = addBackData;
+        } else if(isNaN(judgeLastString) && judgeLastString != ".") {
+            frontData = addAfterClick;
+            backGroundData = addBackData;
+        } else if(judgeLastString === ".") {
+            frontData = onScreen+ " 0 ×" + addAfterClick;
+            backGroundData = onBackGround + "0*" + addBackData;
+        } else {
+            frontData = onScreen + addAfterClick;
+            backGroundData = onBackGround + "*" + addBackData;
+        };
+        document.getElementById("equqtion").innerHTML = frontData;
+        document.getElementById("background").innerHTML = backGroundData;
+    
+    console.log(document.getElementById("background").innerHTML);
+    
+}
+
 function digit(e) {
     category.basicVariable();
 
@@ -396,6 +420,10 @@ function back() {
     } else if( judgeLastString === "!") {
         frontData = onScreen.substring(0,dataLength - 2);
         backGroundData = bgBefLeftparen + scBetLeftAndRightTran3;
+        
+    } else if(judgeLastString === "%") {
+        frontData = onScreen.substring(0,dataLength - 2);
+        backGroundData = onBackGround.substring(0,backDataLength - 5);
         
     } else {
         frontData = onScreen.substring(0,dataLength - 2);
