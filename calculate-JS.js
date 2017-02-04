@@ -79,6 +79,7 @@ var category = {
             backGroundData = onBackGround + "*" + addBackData;
         };
         document.getElementById("equqtion").innerHTML = frontData;
+        document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
         document.getElementById("background").innerHTML = backGroundData;
     },
     
@@ -145,8 +146,10 @@ var category = {
 
 function clearAll() {
     document.getElementById("equqtion").innerHTML = "";
+    document.getElementById("equqtion2").innerHTML = "";
     document.getElementById("background").innerHTML = "";
-    console.log(document.getElementById("background").innerHTML);
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 }
 
 function basicFunc(e) {
@@ -155,8 +158,8 @@ function basicFunc(e) {
     var addBackData = e.name;
     category.simillarFunc(addAfterClick,addBackData);   
     
-    
-    console.log(document.getElementById("background").innerHTML);
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 }
 
 function secFunc(e) {
@@ -165,7 +168,8 @@ function secFunc(e) {
     var addBackData = e.name;
     category.simillarFunc(addAfterClick,addBackData);
 
-    console.log(document.getElementById("background").innerHTML);
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
     
 }
 
@@ -175,8 +179,8 @@ function powerExp(e) {
     var addBackData = e.name;
     category.simillarFunc(addAfterClick,addBackData);
     
-    console.log(document.getElementById("background").innerHTML);
-    
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 }
 
 function power10(e) {
@@ -185,8 +189,8 @@ function power10(e) {
     var addBackData = e.name;
     category.simillarFunc(addAfterClick,addBackData);
 
-    console.log(document.getElementById("background").innerHTML);
-    
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 }
 
 function percentage(e) {
@@ -206,11 +210,12 @@ function percentage(e) {
             frontData = onScreen + addAfterClick;
             backGroundData = onBackGround + "*" + addBackData;
         };
-        document.getElementById("equqtion").innerHTML = frontData;
-        document.getElementById("background").innerHTML = backGroundData;
+    document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
+    document.getElementById("background").innerHTML = backGroundData;
     
-    console.log(document.getElementById("background").innerHTML);
-    
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 }
 
 function digit(e) {
@@ -227,9 +232,11 @@ function digit(e) {
         backGroundData = onBackGround + addBackData;  
     }
     document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
     document.getElementById("background").innerHTML = backGroundData;
     
-    console.log(document.getElementById("background").innerHTML);
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 }
 
 function operator(e) {
@@ -248,9 +255,11 @@ function operator(e) {
         backGroundData = onBackGround + addBackData;
     } 
     document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
     document.getElementById("background").innerHTML = backGroundData;
     
-    console.log(document.getElementById("background").innerHTML);
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 }
 
 function point(e) {
@@ -269,9 +278,11 @@ function point(e) {
         backGroundData = onBackGround;
     }
     document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
     document.getElementById("background").innerHTML = backGroundData;
     
-    console.log(document.getElementById("background").innerHTML);
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 }
 
 function rightPare(e) {
@@ -293,9 +304,11 @@ function rightPare(e) {
         backGroundData = onBackGround + addBackData;
     }
     document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
     document.getElementById("background").innerHTML = backGroundData;
     
-    console.log(document.getElementById("background").innerHTML);
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 
 }
 
@@ -321,11 +334,11 @@ function leftPare(e) {
         backGroundData = onBackGround + addBackData;
     }
     document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
     document.getElementById("background").innerHTML = backGroundData;
     
-    console.log(document.getElementById("background").innerHTML);
-    
-    
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 }
 
 function power(e) {
@@ -352,10 +365,11 @@ function power(e) {
     } 
     
     document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
     document.getElementById("background").innerHTML = backGroundData;
     
-    console.log(document.getElementById("background").innerHTML);
-    
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 }
 
 function factorial(e) {
@@ -396,10 +410,11 @@ function factorial(e) {
     }
     
     document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
     document.getElementById("background").innerHTML = backGroundData;
     
-    console.log(document.getElementById("background").innerHTML);
-
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 }
 
 function back() {
@@ -457,10 +472,11 @@ function back() {
         backGroundData = onBackGround.substring(0,backDataLength - 1);
     }
     document.getElementById("equqtion").innerHTML = frontData;
+    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
     document.getElementById("background").innerHTML = backGroundData;
     
-    console.log(document.getElementById("background").innerHTML);
-
+    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
 }
 
 function equal(e) {
