@@ -496,9 +496,11 @@ function equal(e) {
         evalResult = "0";
         category.scMessage('Please creat formulas!', "red", "1.2em");
     } else if(countLeftPare > countRightPare) {
+        evalResult = Ans;
         category.scMessage('The number of ")" is small </br> then "(" Please add ")"!', "red", "1.2em");
     } else if(isNaN(eval(onBackGround))) {
-        category.scMessage('Formula error! Please check again! </br> This may cause by ln(a) and log(a) when a<0. </br> Or asin(b) and acos(b) when b>1', "red", "0.8em");
+        evalResult = Ans;
+        category.scMessage('Formula error! Please check again! </br> This may cause by ln(a) and log(a) when a<0. </br> Or asin(b) and acos(b) when b>1.', "red", "0.8em");
         
     } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷") {
         back();
