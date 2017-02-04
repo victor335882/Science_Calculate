@@ -62,7 +62,6 @@ var category = {
             return relevant;
         };
     },
-    
     //used to judge basicFunc, secFunc, powerExp and power10 functions
     simillarFunc : function(addAfterClick,addBackData) {
         if(onScreen.length === 0) {
@@ -79,7 +78,6 @@ var category = {
             backGroundData = onBackGround + "*" + addBackData;
         };
     },
-    
     back : {
         length : function() {
             dataLength = Number(String(onScreen).length);
@@ -138,8 +136,7 @@ var category = {
             scBetLeftAndRightTran2 = scBetLeftAndRightTran1.replace(/×/g, '*');
             scBetLeftAndRightTran3 = scBetLeftAndRightTran2.replace(/÷/g, '/');  
         }
-    },
-    
+    }, 
     afterClickButtom : function() {
         document.getElementById("equqtion").innerHTML = frontData;
         document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
@@ -148,11 +145,21 @@ var category = {
         console.log("onScreen : " + document.getElementById("equqtion").innerHTML);
         console.log("onBackGround : " + document.getElementById("background").innerHTML);
     },
+    scMessage : function(showedMessage,color,fontSize) {
+        document.getElementById("messages").innerHTML = showedMessage;
+        document.getElementById("messages").style.color = color;
+        document.getElementById("messages").style.fontSize = fontSize;
+    }
 }
 
 function clearAll() {
-    category.basicVariable();
-    category.afterClickButtom();
+    document.getElementById("equqtion").innerHTML = "";
+    document.getElementById("equqtion2").innerHTML = "";
+    document.getElementById("background").innerHTML = "";
+
+    console.log("onScreen : " + document.getElementById("equqtion").innerHTML);
+    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    category.scMessage('Have a Good Day!', "black", "2em");
 }
 
 function basicFunc(e) {
@@ -161,6 +168,7 @@ function basicFunc(e) {
     category.basicVariable();
     category.simillarFunc(addAfterClick,addBackData);   
     category.afterClickButtom();
+    category.scMessage('Have a Good Day!', "black", "2em");
 }
 
 function secFunc(e) {
@@ -169,6 +177,7 @@ function secFunc(e) {
     category.basicVariable();
     category.simillarFunc(addAfterClick,addBackData);
     category.afterClickButtom();
+    category.scMessage('Have a Good Day!', "black", "2em");
 }
 
 function powerExp(e) {
@@ -177,6 +186,7 @@ function powerExp(e) {
     category.basicVariable();
     category.simillarFunc(addAfterClick,addBackData);
     category.afterClickButtom();
+    category.scMessage('Have a Good Day!', "black", "2em");
 }
 
 function power10(e) {
@@ -185,19 +195,23 @@ function power10(e) {
     category.basicVariable();
     category.simillarFunc(addAfterClick,addBackData);
     category.afterClickButtom();
+    category.scMessage('Have a Good Day!', "black", "2em");
 }
 
 function percentage(e) {
     var addAfterClick = e.value;
     var addBackData = e.name;
     category.basicVariable();
+    category.scMessage('Have a Good Day!', "black", "2em");
     
     if(onScreen.length === 0) {
-        frontData = addAfterClick;
-        backGroundData = addBackData;
-    } else if(isNaN(judgeLastString) && judgeLastString != "." && judgeLastString != "s" && judgeLastString != "π" && judgeLastString != ")") {
         frontData = onScreen;
         backGroundData = onBackGround;
+        category.scMessage('Please add "%" after </br> number, π or Ans ', "red", "1.2em");
+    } else if(isNaN(judgeLastString) && judgeLastString != "." && judgeLastString != "s" && judgeLastString != "π") {
+        frontData = onScreen;
+        backGroundData = onBackGround;
+        category.scMessage('Please add "%" after </br> number, π or Ans ', "red", "1.2em");
     } else if(judgeLastString === ".") {
         frontData = onScreen+ " 0 ×" + addAfterClick;
         backGroundData = onBackGround + "0*" + addBackData;
@@ -214,6 +228,7 @@ function digit(e) {
     var addAfterClick = e.value;
     var addBackData = e.name;
     category.basicVariable();
+    category.scMessage('Have a Good Day!', "black", "2em");
     
     if(judgeLastString === "π" || judgeLastString === ")" || judgeLastString === "!" || judgeLastString === "s") {
         frontData = onScreen + " ×" + addAfterClick;
@@ -230,6 +245,7 @@ function operator(e) {
     var addAfterClick = e.value;
     var addBackData = e.name;
     category.basicVariable();
+    category.scMessage('Have a Good Day!', "black", "2em");
     
     if (onScreen.length === 0 || judgeLastString === ".") {
         frontData = onScreen+ "0" + addAfterClick;
@@ -237,6 +253,7 @@ function operator(e) {
     } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(") {
         frontData = onScreen;
         backGroundData = onBackGround;
+        category.scMessage('Can not add operator after </br> operator or left parenthese! ', "red", "1.2em");
     } else {
         frontData = onScreen + addAfterClick;
         backGroundData = onBackGround + addBackData;
@@ -249,16 +266,18 @@ function point(e) {
     var addBackData = e.name;
     category.basicVariable();
     category.point();
+    category.scMessage('Have a Good Day!', "black", "2em");
     
-    if (onScreen.lastIndexOf(".") === -1 && onScreen.length != 0) {
+    if (onScreen.lastIndexOf(".") === -1 && onScreen.length != 0 && isNaN(judgeLastString) === false) {
         frontData = onScreen + addAfterClick;
         backGroundData = onBackGround + addBackData;
-    } else if(scLastOperatorPos > lastPointPos){
+    } else if(scLastOperatorPos > lastPointPos && isNaN(judgeLastString) === false){
         frontData = onScreen + addAfterClick;
         backGroundData = onBackGround + addBackData;
     } else {
         frontData = onScreen;
         backGroundData = onBackGround;
+        category.scMessage('Please add point after number! ', "red", "1.2em");
     };
     
     category.afterClickButtom();
@@ -269,11 +288,16 @@ function rightPare(e) {
     var addBackData = e.name;
     category.basicVariable();
     category.parentheses();
+    category.scMessage('Have a Good Day!', "black", "2em");
     
-    if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(" || onScreen.length === 0 || countLeftPare <= countRightPare) {
+    if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(") {
         frontData = onScreen;
         backGroundData = onBackGround;
-        
+        category.scMessage('Can not add ")" after operator or "("! ', "red", "1.2em");
+    } else if(onScreen.length === 0 || countLeftPare <= countRightPare) {
+        frontData = onScreen;
+        backGroundData = onBackGround;
+        category.scMessage('Can not add ")" when the number of it is equal to "(" !', "red", "1.2em");
     } else if (judgeLastString === "." ) {
         frontData = onScreen+ " 0" + addAfterClick;
         backGroundData = onBackGround + "0" + addBackData;
@@ -290,6 +314,7 @@ function leftPare(e) {
     var addAfterClick = e.value;
     var addBackData = e.name;
     category.basicVariable();
+    category.scMessage('Have a Good Day!', "black", "2em");
     
     if( onScreen.length === 0 ) {
         frontData = onScreen + addAfterClick;
@@ -315,14 +340,16 @@ function power(e) {
     var addBackData = e.name;
     category.basicVariable();
     category.powerAndFactorial();
-    
+    category.scMessage('Have a Good Day!', "black", "2em");
     
     if(onScreen.length === 0) {
         frontData = onScreen;
         backGroundData = onBackGround;
-    } else if(isNaN(judgeLastString) && judgeLastString != "π" && judgeLastString != ")" && judgeLastString != "." && judgeLastString != "s") {
+        category.scMessage('Please set parameter "x"!', "red", "1.2em");
+    } else if(isNaN(judgeLastString) && judgeLastString != "π" && judgeLastString != "s" && judgeLastString != "." && judgeLastString != ")") {
         frontData = onScreen;
         backGroundData = onBackGround;
+        category.scMessage('Parameter "x" can only be number, π or Ans!', "red", "1.2em");
     } else if(isNaN(judgeLastString) === false || judgeLastString === "π" || judgeLastString === "s") {
         frontData = onScreen + addAfterClick;
         backGroundData = bgBfLastOperator + addBackData + bgAfLastOperator + ",";
@@ -340,21 +367,24 @@ function factorial(e) {
     var addAfterClick = e.value;
     category.basicVariable();
     category.onlyFactorial();
-
+    category.powerAndFactorial();
+    category.scMessage('Have a Good Day!', "black", "2em");
     
     if(isNaN(judgeLastString) && judgeLastString != ")" && judgeLastString != "s") {
         // not number
         frontData = onScreen;
         backGroundData = onBackGround;
+        category.scMessage('Please add factorial after integer numbers!', "red", "1.2em");
     } else if(scAfLastOperatorTran != parseInt(scAfLastOperatorTran,10) && judgeLastString != ")" && judgeLastString != "s") {
         // not integer
         frontData = onScreen;
         backGroundData = onBackGround;
+        category.scMessage('Please add factorial after integer numbers!', "red", "1.2em");
     } else if(judgeLastString === ")") {
-        category.powerAndFactorial();
         if(eval(bgBetparen) != parseInt(eval(bgBetparen),10)) {
             frontData = onScreen;
             backGroundData = onBackGround;
+            category.scMessage('Please add factorial after integer numbers!', "red", "1.2em");
         } else {
             frontData = onScreen + addAfterClick.substring(2,4);
             backGroundData = bgBefLeftparen + "(" +  Fact(eval(bgBetparen)) +")";
@@ -364,6 +394,7 @@ function factorial(e) {
         if(Ans != parseInt(Ans,10)) {
             frontData = onScreen;
             backGroundData = onBackGround;
+            category.scMessage('Please add factorial after integer numbers!', "red", "1.2em");
         } else {
             frontData = onScreen + addAfterClick.substring(2,4);
             backGroundData = bgBfLastOperator + "(" + Fact(Ans) +")";
@@ -379,6 +410,7 @@ function factorial(e) {
 function back() {
     category.basicVariable();
     category.back.length();
+    category.scMessage('Have a Good Day!', "black", "2em");
     
     if (judgeLastAns === 3 && searchAns != -1) {
         frontData = onScreen.substring(0,dataLength - 4);
@@ -436,20 +468,26 @@ function back() {
 function equal(e) {
     category.basicVariable();
     category.specialMath();
+    category.parentheses();
+    category.scMessage('Have a Good Day!', "black", "2em");
     
     if(onScreen.length === 0) {
         evalResult = "0";
+        clearAll();
+    } else if(countLeftPare > countRightPare) {
+        category.scMessage('The number of ")" is small then "(" </br> Please add ")"!', "red", "1.2em");
         
     } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷") {
         back();
         category.basicVariable();
         evalResult = eval(onBackGround);
-        
+        clearAll();
     } else {
         evalResult = eval(onBackGround);
+        clearAll();
     }
     document.getElementById("result").innerHTML = evalResult;
     
     console.log(evalResult);
-    clearAll();
+    
 }
