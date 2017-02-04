@@ -207,11 +207,11 @@ function percentage(e) {
     if(onScreen.length === 0) {
         frontData = onScreen;
         backGroundData = onBackGround;
-        category.scMessage('Please add "%" after </br> number, π or Ans ', "red", "1.2em");
+        category.scMessage('Please add "%" after </br> number, π or Ans', "red", "1.2em");
     } else if(isNaN(judgeLastString) && judgeLastString != "." && judgeLastString != "s" && judgeLastString != "π") {
         frontData = onScreen;
         backGroundData = onBackGround;
-        category.scMessage('Please add "%" after </br> number, π or Ans ', "red", "1.2em");
+        category.scMessage('Please add "%" after </br> number, π or Ans', "red", "1.2em");
     } else if(judgeLastString === ".") {
         frontData = onScreen+ " 0 ×" + addAfterClick;
         backGroundData = onBackGround + "0*" + addBackData;
@@ -318,7 +318,7 @@ function rightPare(e) {
     } else if(onScreen.length === 0 || countLeftPare <= countRightPare) {
         frontData = onScreen;
         backGroundData = onBackGround;
-        category.scMessage('Can not add ")" when the number of ")" is equal to "(" !', "red", "1.2em");
+        category.scMessage('Can not add ")" when the number of ")" is equal to "(" \'s !', "red", "1.2em");
     } else if (judgeLastString === "." ) {
         frontData = onScreen+ " 0" + addAfterClick;
         backGroundData = onBackGround + "0" + addBackData;
@@ -497,7 +497,7 @@ function equal(e) {
         category.scMessage('Please creat formulas!', "red", "1.2em");
     } else if(countLeftPare > countRightPare) {
         evalResult = Ans;
-        category.scMessage('The number of ")" is small </br> then "(" Please add ")"!', "red", "1.2em");
+        category.scMessage('The number of ")" is small then "(" \'s Please add ")"!', "red", "1.2em");
     } else if(isNaN(eval(onBackGround))) {
         evalResult = Ans;
         category.scMessage('Formula error! Please check again! </br> This may cause by ln(a) and log(a) when a<0. </br> Or asin(b) and acos(b) when b>1.', "red", "0.8em");
