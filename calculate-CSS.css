@@ -1,26 +1,29 @@
 #operator{
     width:290px;
-    height: 314px;
+    height: 328px;
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-top: -157px;
+    margin-top: -164px;
     margin-left: -145px;
+
 }
 
 #messagesScreen{
     width: 234px;
-    height: 53px;
+    height: 66px;
     margin: 10px;
+
 }
 
 #messages{
     padding: 0;
     margin: 0;
-    height: 42px;
+    height: 50px;
     text-align: center;
     font-size: 2em;
     font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+
 }
 
 #resultScreen{
