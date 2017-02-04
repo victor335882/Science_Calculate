@@ -196,9 +196,9 @@ function percentage(e) {
     if(onScreen.length === 0) {
             frontData = addAfterClick;
             backGroundData = addBackData;
-        } else if(isNaN(judgeLastString) && judgeLastString != ".") {
-            frontData = addAfterClick;
-            backGroundData = addBackData;
+        } else if(isNaN(judgeLastString) && judgeLastString != "." && judgeLastString != "s" && judgeLastString != "π" && judgeLastString != ")") {
+            frontData = onScreen;
+            backGroundData = onBackGround;
         } else if(judgeLastString === ".") {
             frontData = onScreen+ " 0 ×" + addAfterClick;
             backGroundData = onBackGround + "0*" + addBackData;
@@ -360,19 +360,19 @@ function power(e) {
 
 function factorial(e) {
     category.basicVariable();
-    category.powerAndFactorial();
     category.onlyFactorial();
     var addAfterClick = e.value;
     
-    if(isNaN(judgeLastString) && judgeLastString != ")") {
+    if(isNaN(judgeLastString) && judgeLastString != ")" && judgeLastString != "s") {
         // not number
         frontData = onScreen;
         backGroundData = onBackGround;
-    } else if(scAfLastOperatorTran != parseInt(scAfLastOperatorTran,10) && judgeLastString != ")") {
+    } else if(scAfLastOperatorTran != parseInt(scAfLastOperatorTran,10) && judgeLastString != ")" && judgeLastString != "s") {
         // not integer
         frontData = onScreen;
         backGroundData = onBackGround;
     } else if(judgeLastString === ")") {
+        category.powerAndFactorial();
         if(eval(bgBetparen) != parseInt(eval(bgBetparen),10)) {
             frontData = onScreen;
             backGroundData = onBackGround;
@@ -380,6 +380,16 @@ function factorial(e) {
             frontData = onScreen + addAfterClick.substring(2,4);
             backGroundData = bgBefLeftparen + "(" +  Fact(eval(bgBetparen)) +")";
         }
+    } else if(judgeLastString === "s") {
+        category.specialMath();
+        if(Ans != parseInt(Ans,10)) {
+            frontData = onScreen;
+            backGroundData = onBackGround;
+        } else {
+            frontData = onScreen + addAfterClick.substring(2,4);
+            backGroundData = bgBfLastOperator + "(" + Fact(Ans) +")";
+        }
+        
     } else {
         frontData = onScreen + addAfterClick.substring(2,4);
         backGroundData = bgBfLastOperator + "(" + Fact(scAfLastOperatorTran) +")";
