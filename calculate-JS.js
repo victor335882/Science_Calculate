@@ -139,7 +139,7 @@ var category = {
     }, 
     afterClickButtom : function() {
         document.getElementById("equqtion").innerHTML = frontData;
-        document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
+        document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-43,frontData.length);
         document.getElementById("background").innerHTML = backGroundData;
 
         console.log("onScreen : " + document.getElementById("equqtion").innerHTML);
@@ -318,7 +318,7 @@ function rightPare(e) {
     } else if(onScreen.length === 0 || countLeftPare <= countRightPare) {
         frontData = onScreen;
         backGroundData = onBackGround;
-        category.scMessage('Can not add ")" when the number of it is equal to "(" !', "red", "1.2em");
+        category.scMessage('Can not add ")" </br> when the number of it is equal to "(" !', "red", "1.2em");
     } else if (judgeLastString === "." ) {
         frontData = onScreen+ " 0" + addAfterClick;
         backGroundData = onBackGround + "0" + addBackData;
