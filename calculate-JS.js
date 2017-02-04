@@ -267,7 +267,7 @@ function subtract(e) {
     category.basicVariable();
     category.scMessage('Have a Good Day!', "black", "2em");
     
-    if (onScreen.length === 0 || judgeLastString === ".") {
+    if (judgeLastString === ".") {
         frontData = onScreen+ "0" + addAfterClick;
         backGroundData = onBackGround + "0" + addBackData;
     } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷") {
