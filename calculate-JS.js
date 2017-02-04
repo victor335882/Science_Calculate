@@ -261,6 +261,27 @@ function operator(e) {
     category.afterClickButtom();
 }
 
+function subtract(e) {
+    var addAfterClick = e.value;
+    var addBackData = e.name;
+    category.basicVariable();
+    category.scMessage('Have a Good Day!', "black", "2em");
+    
+    if (onScreen.length === 0 || judgeLastString === ".") {
+        frontData = onScreen+ "0" + addAfterClick;
+        backGroundData = onBackGround + "0" + addBackData;
+    } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷") {
+        frontData = onScreen;
+        backGroundData = onBackGround;
+        category.scMessage('Can not add operator after </br> operator or left parenthese! ', "red", "1.2em");
+    } else {
+        frontData = onScreen + addAfterClick;
+        backGroundData = onBackGround + addBackData;
+    };
+    category.afterClickButtom();
+    
+}
+
 function point(e) {
     var addAfterClick = e.value;
     var addBackData = e.name;
