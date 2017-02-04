@@ -8,6 +8,20 @@
     margin-left: -145px;
 }
 
+#messagesScreen{
+    width: 234px;
+    height: 35px;
+    margin: 10px;
+}
+
+#messages{
+    padding-top: 4;
+    height: 18px;
+    text-align: center;
+    font-size: 1em;
+    font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+}
+
 #resultScreen{
     width: 234px;
     height: 56px;

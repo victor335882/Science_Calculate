@@ -78,9 +78,6 @@ var category = {
             frontData = onScreen + " ×" + addAfterClick;
             backGroundData = onBackGround + "*" + addBackData;
         };
-        document.getElementById("equqtion").innerHTML = frontData;
-        document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
-        document.getElementById("background").innerHTML = backGroundData;
     },
     
     back : {
@@ -142,87 +139,81 @@ var category = {
             scBetLeftAndRightTran3 = scBetLeftAndRightTran2.replace(/÷/g, '/');  
         }
     },
+    
+    afterClickButtom : function() {
+        document.getElementById("equqtion").innerHTML = frontData;
+        document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
+        document.getElementById("background").innerHTML = backGroundData;
+
+        console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+        console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    },
 }
 
 function clearAll() {
-    document.getElementById("equqtion").innerHTML = "";
-    document.getElementById("equqtion2").innerHTML = "";
-    document.getElementById("background").innerHTML = "";
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    category.basicVariable();
+    category.afterClickButtom();
 }
 
 function basicFunc(e) {
-    category.basicVariable();
     var addAfterClick = e.value;
     var addBackData = e.name;
+    category.basicVariable();
     category.simillarFunc(addAfterClick,addBackData);   
-    
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    category.afterClickButtom();
 }
 
 function secFunc(e) {
-    category.basicVariable();
     var addAfterClick = e.value + " (";
     var addBackData = e.name;
+    category.basicVariable();
     category.simillarFunc(addAfterClick,addBackData);
-
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
-    
+    category.afterClickButtom();
 }
 
 function powerExp(e) {
-    category.basicVariable();
     var addAfterClick = e.value.substring(0,4) + " (";
     var addBackData = e.name;
+    category.basicVariable();
     category.simillarFunc(addAfterClick,addBackData);
-    
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    category.afterClickButtom();
 }
 
 function power10(e) {
-    category.basicVariable();
     var addAfterClick = e.value.substring(0,6) + " (";
     var addBackData = e.name;
+    category.basicVariable();
     category.simillarFunc(addAfterClick,addBackData);
-
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    category.afterClickButtom();
 }
 
 function percentage(e) {
-    category.basicVariable();
     var addAfterClick = e.value;
     var addBackData = e.name;
-    if(onScreen.length === 0) {
-            frontData = addAfterClick;
-            backGroundData = addBackData;
-        } else if(isNaN(judgeLastString) && judgeLastString != "." && judgeLastString != "s" && judgeLastString != "π" && judgeLastString != ")") {
-            frontData = onScreen;
-            backGroundData = onBackGround;
-        } else if(judgeLastString === ".") {
-            frontData = onScreen+ " 0 ×" + addAfterClick;
-            backGroundData = onBackGround + "0*" + addBackData;
-        } else {
-            frontData = onScreen + addAfterClick;
-            backGroundData = onBackGround + "*" + addBackData;
-        };
-    document.getElementById("equqtion").innerHTML = frontData;
-    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
-    document.getElementById("background").innerHTML = backGroundData;
+    category.basicVariable();
     
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    if(onScreen.length === 0) {
+        frontData = addAfterClick;
+        backGroundData = addBackData;
+    } else if(isNaN(judgeLastString) && judgeLastString != "." && judgeLastString != "s" && judgeLastString != "π" && judgeLastString != ")") {
+        frontData = onScreen;
+        backGroundData = onBackGround;
+    } else if(judgeLastString === ".") {
+        frontData = onScreen+ " 0 ×" + addAfterClick;
+        backGroundData = onBackGround + "0*" + addBackData;
+    } else {
+        frontData = onScreen + addAfterClick;
+        backGroundData = onBackGround + "*" + addBackData;
+    };
+    
+    category.afterClickButtom();
+    
 }
 
 function digit(e) {
-    category.basicVariable();
-
     var addAfterClick = e.value;
     var addBackData = e.name;
+    category.basicVariable();
     
     if(judgeLastString === "π" || judgeLastString === ")" || judgeLastString === "!" || judgeLastString === "s") {
         frontData = onScreen + " ×" + addAfterClick;
@@ -230,19 +221,15 @@ function digit(e) {
     } else {
         frontData = onScreen + addAfterClick;
         backGroundData = onBackGround + addBackData;  
-    }
-    document.getElementById("equqtion").innerHTML = frontData;
-    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
-    document.getElementById("background").innerHTML = backGroundData;
+    };
     
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    category.afterClickButtom();
 }
 
 function operator(e) {
-    category.basicVariable();
     var addAfterClick = e.value;
     var addBackData = e.name;
+    category.basicVariable();
     
     if (onScreen.length === 0 || judgeLastString === ".") {
         frontData = onScreen+ "0" + addAfterClick;
@@ -253,20 +240,16 @@ function operator(e) {
     } else {
         frontData = onScreen + addAfterClick;
         backGroundData = onBackGround + addBackData;
-    } 
-    document.getElementById("equqtion").innerHTML = frontData;
-    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
-    document.getElementById("background").innerHTML = backGroundData;
-    
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    };
+    category.afterClickButtom();
 }
 
 function point(e) {
-    category.basicVariable();
-    category.point();
     var addAfterClick = e.value;
     var addBackData = e.name;
+    category.basicVariable();
+    category.point();
+    
     if (onScreen.lastIndexOf(".") === -1 && onScreen.length != 0) {
         frontData = onScreen + addAfterClick;
         backGroundData = onBackGround + addBackData;
@@ -276,20 +259,16 @@ function point(e) {
     } else {
         frontData = onScreen;
         backGroundData = onBackGround;
-    }
-    document.getElementById("equqtion").innerHTML = frontData;
-    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
-    document.getElementById("background").innerHTML = backGroundData;
+    };
     
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    category.afterClickButtom();
 }
 
 function rightPare(e) {
-    category.basicVariable();
-    category.parentheses();
     var addAfterClick = e.value;
     var addBackData = e.name;
+    category.basicVariable();
+    category.parentheses();
     
     if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷" || judgeLastString === "(" || onScreen.length === 0 || countLeftPare <= countRightPare) {
         frontData = onScreen;
@@ -302,20 +281,15 @@ function rightPare(e) {
     } else {
         frontData = onScreen + addAfterClick;
         backGroundData = onBackGround + addBackData;
-    }
-    document.getElementById("equqtion").innerHTML = frontData;
-    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
-    document.getElementById("background").innerHTML = backGroundData;
+    };
     
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
-
+    category.afterClickButtom();
 }
 
 function leftPare(e) {
-    category.basicVariable();
     var addAfterClick = e.value;
     var addBackData = e.name;
+    category.basicVariable();
     
     if( onScreen.length === 0 ) {
         frontData = onScreen + addAfterClick;
@@ -332,20 +306,16 @@ function leftPare(e) {
     } else {
         frontData = onScreen + addAfterClick;
         backGroundData = onBackGround + addBackData;
-    }
-    document.getElementById("equqtion").innerHTML = frontData;
-    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
-    document.getElementById("background").innerHTML = backGroundData;
-    
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    };
+    category.afterClickButtom();
 }
 
 function power(e) {
-    category.basicVariable();
-    category.powerAndFactorial();
     var addAfterClick = e.value.substring(2,4) + " (";
     var addBackData = e.name;
+    category.basicVariable();
+    category.powerAndFactorial();
+    
     
     if(onScreen.length === 0) {
         frontData = onScreen;
@@ -362,20 +332,15 @@ function power(e) {
     } else {
         frontData = onScreen + addAfterClick;
         backGroundData = bgBefLeftparen + addBackData + bgBetparen + ",";
-    } 
-    
-    document.getElementById("equqtion").innerHTML = frontData;
-    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
-    document.getElementById("background").innerHTML = backGroundData;
-    
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    };
+    category.afterClickButtom();
 }
 
 function factorial(e) {
+    var addAfterClick = e.value;
     category.basicVariable();
     category.onlyFactorial();
-    var addAfterClick = e.value;
+
     
     if(isNaN(judgeLastString) && judgeLastString != ")" && judgeLastString != "s") {
         // not number
@@ -407,14 +372,8 @@ function factorial(e) {
     } else {
         frontData = onScreen + addAfterClick.substring(2,4);
         backGroundData = bgBfLastOperator + "(" + Fact(scAfLastOperatorTran) +")";
-    }
-    
-    document.getElementById("equqtion").innerHTML = frontData;
-    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
-    document.getElementById("background").innerHTML = backGroundData;
-    
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    };
+    category.afterClickButtom();
 }
 
 function back() {
@@ -470,13 +429,8 @@ function back() {
     } else {
         frontData = onScreen.substring(0,dataLength - 2);
         backGroundData = onBackGround.substring(0,backDataLength - 1);
-    }
-    document.getElementById("equqtion").innerHTML = frontData;
-    document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
-    document.getElementById("background").innerHTML = backGroundData;
-    
-    console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
-    console.log("onBackGround : " + document.getElementById("background").innerHTML);
+    };
+    category.afterClickButtom();
 }
 
 function equal(e) {
