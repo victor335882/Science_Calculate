@@ -3,7 +3,7 @@ var category = {
     basicVariable : function() {
         frontData = "";
         backGroundData = "";
-        result = "";
+        evalResult = "";
         onScreen = document.getElementById("equqtion").innerHTML;
         onBackGround = document.getElementById("background").innerHTML;
         judgeLastString = onScreen.substring(onScreen.length - 1, onScreen.length);
@@ -145,7 +145,7 @@ var category = {
         document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
         document.getElementById("background").innerHTML = backGroundData;
 
-        console.log("onScreen : " + document.getElementById("equqtion2").innerHTML);
+        console.log("onScreen : " + document.getElementById("equqtion").innerHTML);
         console.log("onBackGround : " + document.getElementById("background").innerHTML);
     },
 }
@@ -437,22 +437,19 @@ function equal(e) {
     category.basicVariable();
     category.specialMath();
     
-    
     if(onScreen.length === 0) {
-        result = "0";
-        clearAll();
+        evalResult = "0";
         
     } else if(judgeLastString === "+" || judgeLastString === "-" || judgeLastString === "×" || judgeLastString === "÷") {
         back();
         category.basicVariable();
-        result = eval(onBackGround);
-        clearAll();
+        evalResult = eval(onBackGround);
         
     } else {
-        result = eval(onBackGround);
-        clearAll();
+        evalResult = eval(onBackGround);
     }
-    document.getElementById("result").innerHTML = result;
+    document.getElementById("result").innerHTML = evalResult;
     
-    console.log(document.getElementById("result").innerHTML);
+    console.log(evalResult);
+    clearAll();
 }
