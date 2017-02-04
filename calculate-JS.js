@@ -92,6 +92,9 @@ var category = {
             //Due to there are a space after operator so we neeed to plus 1 after maxScLfuncIndex and maxBgLfuncIndex
             maxScLfuncIndex = Math.max(onScreen.lastIndexOf("+"), onScreen.lastIndexOf("-"), onScreen.lastIndexOf("×"), onScreen.lastIndexOf("÷"), onScreen.substring(0, onScreen.length - 1).lastIndexOf("("));
             remainScFunction = onScreen.substring(0, maxScLfuncIndex+1);
+            scFunctionAfOp = onScreen.substring(maxScLfuncIndex + 1, onScreen.length - 1);
+            scFunctionAfOp1 = scFunctionAfOp.replace(/\s+/g,"");
+            
 
             maxBgLfuncIndex = Math.max(onBackGround.lastIndexOf("+"), onBackGround.lastIndexOf("-"), onBackGround.lastIndexOf("*"), onBackGround.lastIndexOf("\/"), onBackGround.substring(0, onBackGround.lastIndexOf("(") - 1).lastIndexOf("("));
             remainBgFunction = onBackGround.substring(0, maxBgLfuncIndex+1);
@@ -391,7 +394,6 @@ function factorial(e) {
 
 function back() {
     category.basicVariable();
-    category.powerAndFactorial();
     category.back.length();
     
     if (judgeLastAns === 3 && searchAns != -1) {
@@ -404,14 +406,17 @@ function back() {
                 category.back.backPower();
                 frontData = onScreen.substring(0,dataLength - 4);
                 backGroundData = remainBgFunction2 + bgBetLeftAndRight2;
+                
             } else if(onScreen.substring(onScreen.length - 5, onScreen.length - 4) === "e") {
                 category.back.backSecFunc();
                 frontData = onScreen.substring(0,dataLength - 6);
                 backGroundData = remainBgFunction;
+                
             } else {
                 category.back.backSecFunc();
                 frontData = onScreen.substring(0,dataLength - 4);
                 backGroundData = remainBgFunction + onBackGround.substring(onBackGround.lastIndexOf("(")+1,onBackGround.length - 1);
+                
             }
             
         } else {
@@ -421,10 +426,18 @@ function back() {
         }
         
     } else if( judgeLastString === "!") {
-        category.back.backFactorial();
-        frontData = onScreen.substring(0,dataLength - 2);
-        backGroundData = bgBefLeftparen + scBetLeftAndRightTran3;
-        
+        category.powerAndFactorial();
+        if(onScreen.substring(onScreen.length - 3, onScreen.length - 2) === ")") {
+            category.back.backFactorial();
+            frontData = onScreen.substring(0,dataLength - 2);
+            backGroundData = bgBefLeftparen + scBetLeftAndRightTran3;
+            
+        } else {
+            category.back.backSecFunc();
+            frontData = onScreen.substring(0,dataLength - 2);
+            backGroundData = bgBefLeftparen + scFunctionAfOp1;
+        }
+
     } else if(judgeLastString === "%") {
         frontData = onScreen.substring(0,dataLength - 2);
         backGroundData = onBackGround.substring(0,backDataLength - 5);
