@@ -139,7 +139,7 @@ var category = {
     }, 
     afterClickButtom : function() {
         document.getElementById("equqtion").innerHTML = frontData;
-        document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-43,frontData.length);
+        document.getElementById("equqtion2").innerHTML = frontData.substring(frontData.length-46,frontData.length);
         document.getElementById("background").innerHTML = backGroundData;
 
         console.log("onScreen : " + document.getElementById("equqtion").innerHTML);
